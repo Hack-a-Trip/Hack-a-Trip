@@ -75,7 +75,7 @@ body {
 								for( int i=0; i<list.size(); i++) {
 									Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelKey", list.get(i)).getSingleResult();
 							%>
-								<li><a href="#"><%= t.getName() %></a></li>
+								<li><a href="/DisplayTravelStep1?key=<%= t.getKey()%>"><%= t.getName() %></a></li>
 							<%	} %>
 							<!-- end foreach -->
 						</ul></li>
