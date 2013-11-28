@@ -4,9 +4,11 @@
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="net.tncy.entity.Travel" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <% 
 Travel t = (Travel)request.getAttribute("travel");
+SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 %>
 
 
@@ -54,13 +56,43 @@ Travel t = (Travel)request.getAttribute("travel");
 
 
 <div class="container">
-	<h1><%= t.getName() %></h1>
+	<h1 style="text-align: center;"><%= t.getName() %></h1>
+	
 	<div style="width: 100%; height: 40%" id="map-canvas"/>
 </div>
 </br>
 </br>
 <div class="details">
-		<span style="font-size : 1.5em;" id="budget" ><img src=/bill.png"/> Budget : 1500</span>
-	</div>
+	<table style="width: 75%">
+		<tr>
+			<th style="font-size : 1.5em;">Start date</th>
+			<td style="font-size : 1.5em; text-align: center"><%=df.format(t.getBeginDate()) %></td>
+		</tr>
+		<tr>
+			<th style="font-size : 1.5em;">End date</th>
+			<td style="font-size : 1.5em; text-align: center"><%=df.format(t.getEndDate()) %></td>
+		</tr>
+		<tr>
+			<th style="font-size : 1.5em;">Budget</th>
+			<td style="font-size : 1.5em; text-align: center"><%=t.getMaxBudget() %></td>
+		</tr>
+	</table>
+</div>
+
+<div><br/></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'hackatrip-admin'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 <jsp:include page="footer.jsp"></jsp:include>

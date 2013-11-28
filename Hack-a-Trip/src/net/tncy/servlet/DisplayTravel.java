@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.tncy.database.EMF;
 import net.tncy.entity.Travel;
 
-public class DisplayTravelStep1 extends HttpServlet{
+public class DisplayTravel extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,20 @@ public class DisplayTravelStep1 extends HttpServlet{
 
 		RequestDispatcher rd = null;
 		req.setAttribute("travel", t);
-		rd = req.getRequestDispatcher("/displayTravelStep1.jsp");
+		rd = req.getRequestDispatcher("/displayTravel.jsp");
+		rd.forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		EntityManager em = EMF.getInstance().getEntityManager();
+
+		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", (Long)req.getAttribute("id")).getSingleResult();
+
+		RequestDispatcher rd = null;
+		req.setAttribute("travel", t);
+		rd = req.getRequestDispatcher("/displayTravel.jsp");
 		rd.forward(req, resp);
 	}
 

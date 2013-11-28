@@ -47,6 +47,7 @@ public class CreateTravel extends HttpServlet
 		String countryForm = req.getParameter("country");
 		String beginDateForm = req.getParameter("beginDate");
 		String endDateForm = req.getParameter("endDate");
+		Integer budgetForm = Integer.valueOf(req.getParameter("budget"));
 		
 		Date beginDate = null;
 		Date endDate = null;
@@ -87,6 +88,7 @@ public class CreateTravel extends HttpServlet
 			t.setCountry(countryForm);
 			t.setBeginDate(beginDate);
 			t.setEndDate(endDate);
+			t.setMaxBudget(budgetForm);
 			EntityManager em = EMF.getInstance().getEntityManager();
 			em.getTransaction().begin();
 			em.persist(t);
@@ -94,6 +96,7 @@ public class CreateTravel extends HttpServlet
 			
 			Bind b = new Bind();
 			b.setTravel(t.getId());
+			b.setOwner(true);
 			b.setMember(UserServiceFactory.getUserService().getCurrentUser().getEmail());
 			em.getTransaction().begin();
 			em.persist(b);
@@ -101,7 +104,9 @@ public class CreateTravel extends HttpServlet
 			
 			notifications.add("Travel added successfully");
 			req.setAttribute("notifications", notifications);
-			rd = req.getRequestDispatcher("/index.jsp");
+			req.setAttribute("id", t.getId());
+//			rd = req.getRequestDispatcher("/index.jsp");
+			rd = req.getRequestDispatcher("/DisplayTravel");
 		}
 		else
 		{

@@ -24,6 +24,7 @@
 	<input name="country" type="text" class="input-block-level" placeholder="Country">
 	<input name="beginDate" type="text" class="input-block-level" placeholder="Begin Date (dd/mm/yyyy)">
 	<input name="endDate" type="text" class="input-block-level" placeholder="End Date (dd/mm/yyyy)">
+	<input name="budget" type="number" class="input-block-level" placeholder="Maximum budget">
 	<button class="btn btn-large btn-primary" type="submit">Create</button>
 </form>
 

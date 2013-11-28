@@ -17,6 +17,7 @@ public class Bind {
 	
 	private long travel;
 	private String member;
+	private boolean isOwner ;
 	
 	public long getTravel() {
 		return travel;
@@ -29,6 +30,12 @@ public class Bind {
 	}
 	public void setMember(String member) {
 		this.member = member;
+	}
+	public boolean isOwner() {
+		return isOwner;
+	}
+	public void setOwner(boolean isOwner) {
+		this.isOwner = isOwner;
 	}
 	
 }
