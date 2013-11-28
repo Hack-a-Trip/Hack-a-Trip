@@ -5,20 +5,20 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>Hack_a_Trip</servlet-name>
-		<servlet-class>net.tncy.hackatrip.Hack_a_TripServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Hack_a_Trip</servlet-name>
-		<url-pattern>/hack_a_trip</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>CreateTravel</servlet-name>
 		<servlet-class>net.tncy.servlet.CreateTravel</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CreateTravel</servlet-name>
 		<url-pattern>/CreateTravel</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Resultat</servlet-name>
+		<servlet-class>net.tncy.servlet.Resultat</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Resultat</servlet-name>
+		<url-pattern>/Resultat</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>Resultat</servlet-name>
