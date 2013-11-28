@@ -2,13 +2,10 @@ package net.tncy.servlet;
 
 import java.io.IOException;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.*;
 
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 
-import net.tncy.database.EMF;
-import net.tncy.entity.Person;
 import net.tncy.hackatrip.API_outpost_travel;
 
 @SuppressWarnings("serial")

@@ -1,7 +1,6 @@
 package net.tncy.servlet;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
