@@ -24,13 +24,11 @@ Travel t = (Travel)request.getAttribute("travel");
         
         map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
-            alert('init');
             codeAddress('<%= t.getCountry() %>, <%= t.getCity() %>');
             
       }
       
       function codeAddress(address) {
-      alert('code addrress');
    	 	geocoder.geocode( { 'address': address}, function(results, status) {
       	if (status == google.maps.GeocoderStatus.OK) {
         	map.setCenter(results[0].geometry.location);
@@ -55,9 +53,12 @@ Travel t = (Travel)request.getAttribute("travel");
 </jsp:include>
 
 
-
-<h1><%= t.getName() %></h1>
-<div style="height: 40%" id="map-canvas"/>
-
+<div class="container">
+	<h1><%= t.getName() %></h1>
+	<div style="width: 40%; height: 70%" id="map-canvas"/>
+	<div class="details">
+		<span id="budget">Budget : 1500></span>
+	</div>
+</div>
 
 <jsp:include page="footer.jsp"></jsp:include>
