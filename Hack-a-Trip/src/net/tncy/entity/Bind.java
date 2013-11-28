@@ -10,21 +10,18 @@ import javax.persistence.NamedQuery;
 import com.google.appengine.api.datastore.Key;
 
 @Entity
-@NamedQueries(value={
-		@NamedQuery(name="findTrip", query="select b.travel from Bind b where b.member = :userEmail")
-})
 public class Bind {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
 	
-	private Key travel;
+	private long travel;
 	private String member;
 	
-	public Key getTravel() {
+	public long getTravel() {
 		return travel;
 	}
-	public void setTravel(Key travel) {
+	public void setTravel(long travel) {
 		this.travel = travel;
 	}
 	public String getMember() {

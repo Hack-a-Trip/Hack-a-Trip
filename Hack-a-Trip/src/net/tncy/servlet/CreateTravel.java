@@ -17,8 +17,6 @@ import net.tncy.database.EMF;
 import net.tncy.entity.Bind;
 import net.tncy.entity.Travel;
 
-import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 @SuppressWarnings("serial")
@@ -57,7 +55,7 @@ public class CreateTravel extends HttpServlet
 		ArrayList<String> notifications = new ArrayList<String>();
 		
 		if(nameForm.equals(""))
-			errors.add("Please enter a name for your traval");
+			errors.add("Please enter a name for your travel");
 		if(cityForm.equals(""))
 			errors.add("Please enter a valid city");
 		if(countryForm.equals(""))
@@ -95,7 +93,7 @@ public class CreateTravel extends HttpServlet
 			em.getTransaction().commit();
 			
 			Bind b = new Bind();
-			b.setTravel(t.getKey());
+			b.setTravel(t.getId());
 			b.setMember(UserServiceFactory.getUserService().getCurrentUser().getEmail());
 			em.getTransaction().begin();
 			em.persist(b);

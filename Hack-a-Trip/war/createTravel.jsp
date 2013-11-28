@@ -17,7 +17,7 @@
 	</c:forEach>
 </c:if>
 
-<form class="form-signin" style="width:40%" action="/CreateTravel" method="post">
+<form class="form-signin" style="width:40%;margin: 0 auto 20px" action="/CreateTravel" method="post">
 	<h2 class="form-signin-heading">Plan a travel</h2>
 	<input name="name" type="text" class="input-block-level" placeholder="Name of your travel">
 	<input name="city" type="text" class="input-block-level" placeholder="City">

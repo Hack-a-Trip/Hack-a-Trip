@@ -13,13 +13,16 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries(value={
-		@NamedQuery(name="findTravel", query="select t from Travel t where t.key = :travelKey")
+		@NamedQuery(name="findTravel", query="select t from Travel t where t.id = :travelId"),
+		@NamedQuery(name="findTravelIdByEmail", query="select b.travel from Bind b where b.member = :userEmail")
 })
 public class Travel
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id ;
 	private String  name;
 	private String city;
 	private String country;
@@ -32,6 +35,11 @@ public class Travel
 		return city;
 	}
 
+	public long getId()
+	{
+		return id ;
+	}
+	
 	public void setCity(String city)
 	{
 		this.city = city;
