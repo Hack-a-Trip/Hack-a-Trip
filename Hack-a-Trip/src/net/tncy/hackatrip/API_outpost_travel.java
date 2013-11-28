@@ -19,7 +19,9 @@ import com.google.gson.JsonSyntaxException;
 public class API_outpost_travel {
 	
 	private Place p;
-	
+	private Activite a;
+
+
 	public API_outpost_travel() throws JSONException, UnsupportedEncodingException, IOException{
 				
 	}
@@ -27,6 +29,11 @@ public class API_outpost_travel {
 	public void getInfoLieux(String ville) throws JsonSyntaxException, IOException, JSONException{
 		Gson gson = new GsonBuilder().create();
 		setP(gson.fromJson(get("http://api.outpost.travel/placeRentals", ville),Place.class));
+	}
+	
+	public void getInfoExperiences(String ville) throws JsonSyntaxException, IOException, JSONException{
+		Gson gson = new GsonBuilder().create();
+		setA(gson.fromJson(get("http://api.outpost.travel/experiences", ville),Activite.class));
 	}
 
 	public static String get(String url_web, String city) throws IOException, JSONException{
@@ -50,5 +57,14 @@ public class API_outpost_travel {
 
 	public void setP(Place p) {
 		this.p = p;
+	}
+	
+	
+	public Activite getA() {
+		return a;
+	}
+
+	public void setA(Activite a) {
+		this.a = a;
 	}
 }
