@@ -55,10 +55,12 @@ Travel t = (Travel)request.getAttribute("travel");
 
 <div class="container">
 	<h1><%= t.getName() %></h1>
-	<div style="width: 40%; height: 70%" id="map-canvas"/>
-	<div class="details">
-		<span id="budget">Budget : 1500></span>
-	</div>
+	<div style="width: 100%; height: 40%" id="map-canvas"/>
 </div>
+</br>
+</br>
+<div class="details">
+		<span style="font-size : 1.5em;" id="budget" ><img src=/bill.png"/> Budget : 1500</span>
+	</div>
 
 <jsp:include page="footer.jsp"></jsp:include>
