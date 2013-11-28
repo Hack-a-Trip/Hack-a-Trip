@@ -60,13 +60,15 @@ body {
 
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/gmap.js"></script>
+	<script src="js/HackMap.js"></script>
 	<script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?sensor=true">
-
     </script>
     <script type="text/javascript">
-		google.maps.event.addDomListener(window, 'load', initialize);
+		var map = new HackMap();
+		map.initialize(-25.363882, 131.044922, 6);
+		map.addMarker(-25.363882, 131.044922, 'test');
+		map.addMarker(-25.363882, 125.044922, 'test2');
     </script>
 	
 </body>
