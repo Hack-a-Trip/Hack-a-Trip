@@ -5,9 +5,16 @@ public class Items {
 	String origin;
 	String description;
 	Photos[] photos;
+	String url;
 	
 	public Items(){
 		
+	}
+	
+	public Items(String origin, int price, String url){
+		this.origin=origin;
+		this.price=price;
+		this.url = url;
 	}
 	
 	public String toString(String s){
@@ -21,5 +28,45 @@ public class Items {
 					"Description : "+description+"\n"+
 					"Photos : "+photos[0].toString(s);
 		}
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Photos[] getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(Photos[] photos) {
+		this.photos = photos;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }
