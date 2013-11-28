@@ -81,3 +81,4 @@ body {
 		<!-- /navbar-inner -->
 	</div>
 	<!-- /navbar -->
+	<div class="container">
