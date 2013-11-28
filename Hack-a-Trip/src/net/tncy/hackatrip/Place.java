@@ -1,5 +1,6 @@
 package net.tncy.hackatrip;
 
+
 public class Place {
 	Items[] items;
 	
@@ -9,7 +10,7 @@ public class Place {
 	public String toString(){
 		String s="";
 		for(int i=0;i<items.length;i++){
-			s += " "+items[i].toString();
+			s += items[i].toString()+"\n\n";
 		}
 		return s;
 	}

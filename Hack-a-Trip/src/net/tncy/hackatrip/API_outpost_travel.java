@@ -12,6 +12,7 @@ import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 
 
@@ -20,8 +21,12 @@ public class API_outpost_travel {
 	Place p;
 	
 	public API_outpost_travel() throws JSONException, UnsupportedEncodingException, IOException{
-			Gson gson = new GsonBuilder().create();
-			p = gson.fromJson(get("http://api.outpost.travel/placeRentals", "Paris"),Place.class);	
+				
+	}
+	
+	public void getInfo(String ville) throws JsonSyntaxException, IOException, JSONException{
+		Gson gson = new GsonBuilder().create();
+		p = gson.fromJson(get("http://api.outpost.travel/placeRentals", ville),Place.class);
 	}
 
 	public static String get(String url_web, String city) throws IOException, JSONException{
