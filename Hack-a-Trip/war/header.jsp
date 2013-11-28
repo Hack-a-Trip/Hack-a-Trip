@@ -1,10 +1,17 @@
+<%@page import="net.tncy.database.EMF"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="net.tncy.tool.Constant" %>
+
+<%@ page import="net.tncy.tool.Constant"%>
+<%@ page import="net.tncy.entity.Bind"%>
+<%@ page import="net.tncy.entity.Travel"%>
+<%@ page import="java.util.List"%>
 <%@ page import="com.google.appengine.api.users.User"%>
 <%@ page import="com.google.appengine.api.users.UserService"%>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
+<%@ page import="javax.persistence.EntityManager"%>
+<%@ page import="com.google.appengine.api.datastore.Key"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -40,31 +47,41 @@ body {
 					data-target=".navbar-responsive-collapse"> <span
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
-				</a> <a class="brand" href="#">Hack a Trip</a>
+				</a> <a class="brand" href="/">Hack a Trip</a>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 					<ul class="nav">
 						<%
-							if (user == null) {
+							if (user == null)
+							{
 						%>
 						<li><a
 							href="<%=userService.createLoginURL(request.getRequestURI())%>">Log
 								in</a></li>
 					</ul>
 					<%
-						} else {
+						}
+						else
+						{
 					%>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Travel<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="/CreateTravel">New</a></li>
-								<li class="divider"></li>
-								<!-- foreach trip do -->
-								<li><a href="#">Trip i</a></li>
-								<!-- end foreach -->
-							</ul></li>
-						<li><a
-							href="<%=userService.createLogoutURL(request.getRequestURI())%>">Log
-								out</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Travel<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/CreateTravel">New</a></li>
+							<li class="divider"></li>
+							<!-- foreach trip do -->
+							<%
+							EntityManager em = EMF.getInstance().getEntityManager();
+							List<Key> list = em.createNamedQuery("findTrip").setParameter("userEmail", user.getEmail()).getResultList();
+								for( int i=0; i<list.size(); i++) {
+									Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelKey", list.get(i)).getSingleResult();
+							%>
+								<li><a href="#"><%= t.getName() %></a></li>
+							<%	} %>
+							<!-- end foreach -->
+						</ul></li>
+					<li><a
+						href="<%=userService.createLogoutURL(request.getRequestURI())%>">Log
+							out</a></li>
 					</ul>
 					<p class="navbar-text pull-right">
 						Log as
@@ -81,3 +98,5 @@ body {
 		<!-- /navbar-inner -->
 	</div>
 	<!-- /navbar -->
+
+	<div class="container-fluid">

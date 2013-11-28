@@ -8,29 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries(value={
+		@NamedQuery(name="findTravel", query="select t from Travel t where t.key = :travelKey")
+})
 public class Travel
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
-	private Key owner;
+	private String  name;
 	private String city;
 	private String country;
 	private Date beginDate;
 	private Date endDate;
 	private Integer maxBudget;
-
-	public final Key getOwner()
-	{
-		return owner;
-	}
-
-	public final void setOwner(Key owner)
-	{
-		this.owner = owner;
-	}
 
 	public String getCity()
 	{
@@ -80,5 +75,25 @@ public class Travel
 	public void setMaxBudget(Integer maxBudget)
 	{
 		this.maxBudget = maxBudget;
+	}
+
+	public final Key getKey()
+	{
+		return key;
+	}
+
+	public final void setKey(Key key)
+	{
+		this.key = key;
+	}
+
+	public final String getName()
+	{
+		return name;
+	}
+
+	public final void setName(String name)
+	{
+		this.name = name;
 	}
 }
