@@ -12,7 +12,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Hack_a_Trip</servlet-name>
 		<url-pattern>/hack_a_trip</url-pattern>
 	</servlet-mapping>
-	
 	<servlet>
 		<servlet-name>CreateTravel</servlet-name>
 		<servlet-class>net.tncy.servlet.CreateTravel</servlet-class>
@@ -22,6 +21,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/CreateTravel</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
