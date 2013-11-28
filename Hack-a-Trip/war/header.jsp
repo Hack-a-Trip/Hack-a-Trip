@@ -44,7 +44,7 @@ body {
 					data-target=".navbar-responsive-collapse"> <span
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
-				</a> <a class="brand" href="#">Hack a Trip</a>
+				</a> <a class="brand" href="/">Hack a Trip</a>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 					<ul class="nav">
 						<%

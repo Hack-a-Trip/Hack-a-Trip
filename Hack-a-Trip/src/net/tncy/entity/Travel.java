@@ -21,8 +21,8 @@ public class Travel
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id ;
+	private static long ID = 0 ;
+	private long id = ID++;
 	private String  name;
 	private String city;
 	private String country;
