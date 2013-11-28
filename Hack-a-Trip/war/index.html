@@ -20,7 +20,7 @@ body {
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
 <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
+<link href="css/hackatrip.css" rel="stylesheet">
 </head>
 
 <body>
@@ -33,7 +33,7 @@ body {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand" href="#">Project name</a>
+				<a class="brand" href="#">Hackhathon 2013</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
@@ -48,17 +48,27 @@ body {
 
 	<div class="container">
 
-		<h1>Bootstrap starter template</h1>
-		<p>
-			Use this document as a way to quick start any new project.<br>
-			All you get is this message and a barebones HTML document.
-		</p>
+		<h1>Hack a Trip</h1>
+		<span id="town">ville : </span>
+		</br>
+		<span id="country">pays : </span>
+		 <div class="gmap" id="map-canvas"/>
+		
 
 	</div>
 	<!-- /container -->
 
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/gmap.js"></script>
+	<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?sensor=true">
+
+    </script>
+    <script type="text/javascript">
+		google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+	
 </body>
 
 </html>
