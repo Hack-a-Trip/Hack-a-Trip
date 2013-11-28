@@ -12,16 +12,21 @@ import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 
 
 public class API_outpost_travel {
 	
-	Place p;
+	private Place p;
 	
 	public API_outpost_travel() throws JSONException, UnsupportedEncodingException, IOException{
-			Gson gson = new GsonBuilder().create();
-			p = gson.fromJson(get("http://api.outpost.travel/placeRentals", "Paris"),Place.class);	
+				
+	}
+	
+	public void getInfoLieux(String ville) throws JsonSyntaxException, IOException, JSONException{
+		Gson gson = new GsonBuilder().create();
+		setP(gson.fromJson(get("http://api.outpost.travel/placeRentals", ville),Place.class));
 	}
 
 	public static String get(String url_web, String city) throws IOException, JSONException{
@@ -37,5 +42,13 @@ public class API_outpost_travel {
 			source +=inputLine;
 		in.close();
 		return source;
+	}
+
+	public Place getP() {
+		return p;
+	}
+
+	public void setP(Place p) {
+		this.p = p;
 	}
 }
