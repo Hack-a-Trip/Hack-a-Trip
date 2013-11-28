@@ -14,5 +14,6 @@ Travel t = (Travel)request.getAttribute("travel");
 %>
 
 <h1><%= t.getName() %></h1>
+<p></p>
 
 <jsp:include page="footer.jsp"></jsp:include>
