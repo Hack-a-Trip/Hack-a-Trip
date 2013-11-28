@@ -71,11 +71,11 @@ body {
 							<!-- foreach trip do -->
 							<%
 							EntityManager em = EMF.getInstance().getEntityManager();
-							List<Key> list = em.createNamedQuery("findTrip").setParameter("userEmail", user.getEmail()).getResultList();
+							List<Long> list = em.createNamedQuery("findTravelIdByEmail").setParameter("userEmail", user.getEmail()).getResultList();
 								for( int i=0; i<list.size(); i++) {
-									Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelKey", list.get(i)).getSingleResult();
+									Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", list.get(i)).getSingleResult();
 							%>
-								<li><a href="/DisplayTravelStep1?key=<%= t.getKey()%>"><%= t.getName() %></a></li>
+								<li><a href="/DisplayTravelStep1?id=<%=t.getId()%>"><%= t.getName() %></a></li>
 							<%	} %>
 							<!-- end foreach -->
 						</ul></li>

@@ -1,7 +1,6 @@
 package net.tncy.servlet;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -27,14 +26,11 @@ public class DisplayTravelStep1 extends HttpServlet{
 		
 		
 		EntityManager em = EMF.getInstance().getEntityManager();
-		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelKey", req.getAttribute("key")).getSingleResult();
-		
-		
+		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
 		RequestDispatcher rd = null;
 		req.setAttribute("travel", t);
 		rd = req.getRequestDispatcher("/displayTravelStep1.jsp");
 		rd.forward(req, resp);
-		
 	}
 
 }

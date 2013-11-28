@@ -95,7 +95,7 @@ public class CreateTravel extends HttpServlet
 			em.getTransaction().commit();
 			
 			Bind b = new Bind();
-			b.setTravel(t.getKey());
+			b.setTravel(t.getId());
 			b.setMember(UserServiceFactory.getUserService().getCurrentUser().getEmail());
 			em.getTransaction().begin();
 			em.persist(b);
