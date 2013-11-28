@@ -1,4 +1,4 @@
-package net.tncy.hackatrip;
+package net.tncy.servlet;
 
 import java.io.IOException;
 
@@ -9,6 +9,7 @@ import com.google.appengine.labs.repackaged.org.json.JSONException;
 
 import net.tncy.database.EMF;
 import net.tncy.entity.Person;
+import net.tncy.hackatrip.API_outpost_travel;
 
 @SuppressWarnings("serial")
 public class Resultat extends HttpServlet
@@ -17,9 +18,9 @@ public class Resultat extends HttpServlet
 	{
 		try {
 			API_outpost_travel test = new API_outpost_travel();
-			test.getInfo("Paris");
+			test.getInfoLieux("Paris");
 			resp.setContentType("text/plain");
-			resp.getWriter().println(test.p.toString());
+			resp.getWriter().println(test.getP().toString());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
