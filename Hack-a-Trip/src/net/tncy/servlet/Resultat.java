@@ -19,8 +19,9 @@ public class Resultat extends HttpServlet
 		try {
 			API_outpost_travel test = new API_outpost_travel();
 			test.getInfoLieux("Paris");
+			test.getInfoExperiences("Paris");
 			resp.setContentType("text/plain");
-			resp.getWriter().println(test.getP().toString());
+			resp.getWriter().println(test.getA().toString("activite"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
