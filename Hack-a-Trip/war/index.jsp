@@ -49,7 +49,7 @@ body {
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Travel<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="/createTravel">New</a></li>
+								<li><a href="/CreateTravel">New</a></li>
 								<li class="divider"></li>
 								<!-- foreach trip do -->
 								<li><a href="#">Trip i</a></li>
