@@ -8,14 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries(value={
+		@NamedQuery(name="findTravel", query="select t from Travel t where t.key = :travelKey")
+})
 public class Travel
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
-	private String name;
+	private String  name;
 	private String city;
 	private String country;
 	private Date beginDate;

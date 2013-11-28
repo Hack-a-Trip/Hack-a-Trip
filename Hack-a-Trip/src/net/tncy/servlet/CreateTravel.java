@@ -9,10 +9,17 @@ import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.tncy.database.EMF;
+import net.tncy.entity.Bind;
 import net.tncy.entity.Travel;
+
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 @SuppressWarnings("serial")
 public class CreateTravel extends HttpServlet
@@ -77,6 +84,7 @@ public class CreateTravel extends HttpServlet
 		if(errors.isEmpty())
 		{
 			Travel t = new Travel();
+			t.setName(nameForm);
 			t.setCity(cityForm);
 			t.setCountry(countryForm);
 			t.setBeginDate(beginDate);
@@ -84,6 +92,13 @@ public class CreateTravel extends HttpServlet
 			EntityManager em = EMF.getInstance().getEntityManager();
 			em.getTransaction().begin();
 			em.persist(t);
+			em.getTransaction().commit();
+			
+			Bind b = new Bind();
+			b.setTravel(t.getKey());
+			b.setMember(UserServiceFactory.getUserService().getCurrentUser().getEmail());
+			em.getTransaction().begin();
+			em.persist(b);
 			em.getTransaction().commit();
 			
 			notifications.add("Travel added successfully");
