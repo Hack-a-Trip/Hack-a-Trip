@@ -12,6 +12,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Hack_a_Trip</servlet-name>
 		<url-pattern>/hack_a_trip</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>CreateTravel</servlet-name>
 		<servlet-class>net.tncy.servlet.CreateTravel</servlet-class>
