@@ -5,6 +5,10 @@
 <%@ page import="com.google.appengine.api.users.User"%>
 <%@ page import="com.google.appengine.api.users.UserService"%>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
+<%@ page import="javax.persistence.EntityManager"%>
+<%@ page import="net.tncy.database.EMF"%>
+<%@ page import="net.tncy.entity.Travel"%>
+<%@ page import="java.util.List"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 

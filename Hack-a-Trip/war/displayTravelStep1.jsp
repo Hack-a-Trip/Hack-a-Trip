@@ -52,4 +52,5 @@ Travel t = (Travel)request.getAttribute("travel");
 <h1><%= t.getName() %></h1>
 <div style="height: 100%" id="map-canvas"/>
 
+
 <jsp:include page="footer.jsp"></jsp:include>
