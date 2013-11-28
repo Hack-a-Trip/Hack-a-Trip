@@ -8,10 +8,20 @@
 	<jsp:param name="title" value="Plan a travel" />
 </jsp:include>
 
-<form class="form-signin" style="width:40%">
+<c:if test="${not empty requestScope.errors }">
+	<c:forEach var="error" items="${requestScope.errors}">
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert">×</a>
+			<strong>${error}</strong>
+		</div>
+	</c:forEach>
+</c:if>
+
+<form class="form-signin" style="width:40%" action="/CreateTravel" method="post">
 	<h2 class="form-signin-heading">Plan a travel</h2>
+	<input name="name" type="text" class="input-block-level" placeholder="Name of your travel">
 	<input name="city" type="text" class="input-block-level" placeholder="City">
-	<input name="country" type="password" class="input-block-level" placeholder="Country">
+	<input name="country" type="text" class="input-block-level" placeholder="Country">
 	<input name="beginDate" type="text" class="input-block-level" placeholder="Begin Date (dd/mm/yyyy)">
 	<input name="endDate" type="text" class="input-block-level" placeholder="End Date (dd/mm/yyyy)">
 	<button class="btn btn-large btn-primary" type="submit">Create</button>
