@@ -21,34 +21,63 @@ public class DisplayTravel extends HttpServlet
 
 	private static final long serialVersionUID = 1L;
 
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
-	{
-		doPost(req, resp);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
-	{
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
 
 		EntityManager em = EMF.getInstance().getEntityManager();
 
-		Travel t = (Travel) em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
-
-		List<String> members = (List<String>) em.createNamedQuery("findMembers").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getResultList();
+		List<String> members = (List<String>) em
+				.createNamedQuery("findMembers")
+				.setParameter("travelId", Long.valueOf(req.getParameter("id")))
+				.getResultList();
 		User user = UserServiceFactory.getUserService().getCurrentUser();
 
 		RequestDispatcher rd = null;
 
-		if (user != null && members.contains(user.getEmail()))
-		{
+		if (user != null && members.contains(user.getEmail())) {
+			Travel t = (Travel) em
+					.createNamedQuery("findTravel")
+					.setParameter("travelId",
+							Long.valueOf(req.getParameter("id")))
+					.getSingleResult();
+			String owner = (String) em
+					.createNamedQuery("findOwner")
+					.setParameter("travelId",
+							Long.valueOf(req.getParameter("id")))
+					.getSingleResult();
+			req.setAttribute("owner", owner);
 			req.setAttribute("travel", t);
 			req.setAttribute("members", members);
 			rd = req.getRequestDispatcher("/displayTravel.jsp");
-		}
-		else
-		{
+		} else {
 			rd = req.getRequestDispatcher("/");
 		}
+		rd.forward(req, resp);
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		EntityManager em = EMF.getInstance().getEntityManager();
+
+		Travel t = (Travel) em.createNamedQuery("findTravel")
+				.setParameter("travelId", (Long) req.getAttribute("id"))
+				.getSingleResult();
+		List<String> members = (List<String>) em
+				.createNamedQuery("findMembers")
+				.setParameter("travelId", (Long) req.getAttribute("id"))
+				.getResultList();
+
+		String owner = (String) em.createNamedQuery("findOwner")
+				.setParameter("travelId", Long.valueOf(req.getParameter("id")))
+				.getSingleResult();
+
+		RequestDispatcher rd = null;
+		req.setAttribute("travel", t);
+		req.setAttribute("members", members);
+		req.setAttribute("owner", owner);
+		rd = req.getRequestDispatcher("/displayTravel.jsp");
 		rd.forward(req, resp);
 	}
 }

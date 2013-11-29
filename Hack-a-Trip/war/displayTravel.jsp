@@ -104,7 +104,6 @@
 	        <input name="idTravel" type="hidden" value="<%=t.getId()%>"/>
 			<input name="city" type="hidden" value="<%=t.getCity() %>"/>
 			<input name="budget" type="hidden" value ="<%=t.getMaxBudget()%>"/>
-			<button class="btn btn-large btn-primary" type="submit">view details</button>
         </form>
         
         <form id="form-delete" class="form-bind" style="width:40%;margin: 0 auto 20px" action="/DeleteTravel" method="post">
