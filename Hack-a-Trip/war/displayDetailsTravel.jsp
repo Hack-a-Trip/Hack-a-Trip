@@ -24,6 +24,7 @@ ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel"
 String textButtonVote = "";
 String typeSubmit = "";
 String buttonClass = "btn ";
+int totalMembers = 1, nbVote=1;
 %>
 
 <div class="container">
@@ -64,6 +65,10 @@ String buttonClass = "btn ";
 								<input name="action" type="hidden" value="<%=typeSubmit%>"/>
 								<button class="<%=buttonClass %>" name="submit" type="submit"><%=textButtonVote %></button>
 							</form>
+							<div class="badge"><%=nbVote%>/<%=totalMembers%></div>
+							<div class="progress progress-striped active">
+								<div class="bar" style="width: <%=(nbVote/totalMembers)*100%>%;"></div>
+							</div>
 							<br/><br/>
 							<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
 						</td>
