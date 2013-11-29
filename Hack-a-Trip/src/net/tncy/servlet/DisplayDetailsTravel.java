@@ -32,7 +32,8 @@ public class DisplayDetailsTravel extends HttpServlet
 		if(User.isConnected(req.getSession()))
 		{
 			String city = req.getParameter("city");
-			
+			int budget = Integer.valueOf(req.getParameter("budget"));
+			System.out.println("budget :"+budget);
 			//FAUT METTRE LA PREMIERE LETTRE EN MAJUSCULE
 			char[] char_table = city.toCharArray();
 			char_table[0]=Character.toUpperCase(char_table[0]);
@@ -44,7 +45,7 @@ public class DisplayDetailsTravel extends HttpServlet
 				try
 				{
 					test = new API_outpost_travel();
-					test.getInfoLieux(city);
+					test.getInfoLieux(city,budget);
 					req.setAttribute("detailsTravel", test.getListe_item());
 					rd = req.getRequestDispatcher("/displayDetailsTravel.jsp");
 				}

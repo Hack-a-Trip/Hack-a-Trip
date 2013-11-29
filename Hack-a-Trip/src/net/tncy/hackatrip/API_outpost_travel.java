@@ -17,7 +17,7 @@ import com.google.gson.JsonSyntaxException;
 
 
 public class API_outpost_travel {
-	
+
 	private Place p;
 	private Activite a;
 	private ArrayList<String> origin = new ArrayList<String>();
@@ -29,32 +29,34 @@ public class API_outpost_travel {
 	public API_outpost_travel() throws JSONException, UnsupportedEncodingException, IOException{
 
 	}
-	
-	public void getInfoLieux(String ville) throws JsonSyntaxException, IOException, JSONException{
+
+	public void getInfoLieux(String ville,int budget) throws JsonSyntaxException, IOException, JSONException{
 		Gson gson = new GsonBuilder().create();
 		setP(gson.fromJson(get("http://api.outpost.travel/placeRentals", ville),Place.class));
 		for(int i =0;i<p.items.length;i++){
-			Items temp = new Items(p.items[i].origin,p.items[i].price,p.items[i].photos[0].url,p.items[i].nid);
-			liste_item.add(temp);
+			if(p.items[i].price <= budget){
+				Items temp = new Items(p.items[i].origin,p.items[i].price,p.items[i].photos[0].url,p.items[i].nid);
+				liste_item.add(temp);
+			}
 		}
-		
+
 	}
-	
+
 	public void getInfoExperiences(String ville) throws JsonSyntaxException, IOException, JSONException{
 		Gson gson = new GsonBuilder().create();
 		setA(gson.fromJson(get("http://api.outpost.travel/experiences", ville),Activite.class));
 	}
 
 	public static String get(String url_web, String city) throws IOException, JSONException{
-		
+
 		//FAUT METTRE LA PREMIERE LETTRE EN MAJUSCULE
 		char[] char_table = city.toCharArray();
 		char_table[0]=Character.toUpperCase(char_table[0]);
 		city = new String(char_table);
 		//FIN
-		
+
 		if(city.contains(" ")){
-			
+
 			city = city.replaceAll(" ", "%20");
 			for(int i=0;i<city.length();i++){
 				if(city.charAt(i)=='0'){
@@ -84,8 +86,8 @@ public class API_outpost_travel {
 	public void setP(Place p) {
 		this.p = p;
 	}
-	
-	
+
+
 	public Activite getA() {
 		return a;
 	}
