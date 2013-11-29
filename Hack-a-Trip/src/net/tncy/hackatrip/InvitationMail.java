@@ -25,13 +25,13 @@ public class InvitationMail {
 			
 			String msgBody = "Bonjour,\n" +
 					"\n" +
-					user.getNickname()+" a le plaisir de vous inviter au voyage '"+travel.getName()+"' !" +
+					user.getNickname()+" a le plaisir de vous inviter au voyage '"+travel.getName()+"' !\n" +
 							"Vous pouvez participer à la préparation de cet évenement ici : http://hackatrip.appspot.com/DisplayTravel?id="+travel.getId() + " \n" +
 							"\n" +
 							"A bientôt, sur Hack a trip!";
 			try{
 				Message msg = new MimeMessage(session);
-				msg.setFrom(new InternetAddress("hackhaton2013@gmail.com", "Hack a Trip"));
+				msg.setFrom(new InternetAddress("noreply@hackatrip.appspotmail.com", "Hack a Trip"));
 				msg.addRecipient(Message.RecipientType.TO, new InternetAddress(mail, "Invité"));
 				msg.setSubject(user.getNickname()+" vous invite à voyager, depuis le site Hackatrip.appspot.com");
 				msg.setText(msgBody);
