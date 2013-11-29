@@ -18,8 +18,9 @@ import net.tncy.entity.Vote;
 import net.tncy.hackatrip.API_outpost_travel;
 import net.tncy.tool.User;
 
-import com.google.appengine.labs.repackaged.org.json.JSONException;
+import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.labs.repackaged.org.json.JSONException;
 
 @SuppressWarnings("serial")
 public class DisplayDetailsTravel extends HttpServlet
@@ -30,11 +31,12 @@ public class DisplayDetailsTravel extends HttpServlet
 	{
 		EntityManager em = EMF.getInstance().getEntityManager();
 		RequestDispatcher rd = null;
+		UserService userService = UserServiceFactory.getUserService();
 
 		if(User.isConnected(req.getSession()))
 		{
 			List<String> members = (List<String>) em.createNamedQuery("findMembers").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getResultList();
-			com.google.appengine.api.users.User user = UserServiceFactory.getUserService().getCurrentUser();
+			com.google.appengine.api.users.User user = userService.getCurrentUser();
 	
 			if (user != null && members.contains(user.getEmail()))
 			{
@@ -98,9 +100,10 @@ public class DisplayDetailsTravel extends HttpServlet
 		}
 		else
 		{
-			req.setAttribute("error","e1");
-			rd = req.getRequestDispatcher("/");
-			rd.forward(req, resp);
+			resp.sendRedirect(UserServiceFactory.getUserService().createLoginURL(req.getRequestURL().toString()+"?id="+req.getParameter("id")));
+//			req.setAttribute("error","e1");
+//			rd = req.getRequestDispatcher("/");
+//			rd.forward(req, resp);
 		}
 	}
 

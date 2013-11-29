@@ -54,9 +54,10 @@ public class DisplayTravel extends HttpServlet
 		}
 		else
 		{
-			req.setAttribute("error","e1");
-			rd = req.getRequestDispatcher("/");
-			rd.forward(req, resp);
+			resp.sendRedirect(UserServiceFactory.getUserService().createLoginURL(req.getRequestURL().toString()+"?id="+req.getParameter("id")));
+//			req.setAttribute("error","e1");
+//			rd = req.getRequestDispatcher("/");
+//			rd.forward(req, resp);
 		}
 			
 	}
