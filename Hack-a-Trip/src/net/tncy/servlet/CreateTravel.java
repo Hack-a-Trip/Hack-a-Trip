@@ -120,18 +120,20 @@ public class CreateTravel extends HttpServlet
 			em.persist(b);
 			em.getTransaction().commit();
 			
-			notifications.add("Travel added successfully");
-			req.setAttribute("notifications", notifications);
-			req.setAttribute("id", t.getId());
+//			notifications.add("Travel added successfully");
+//			req.setAttribute("notifications", notifications);
+//			req.setAttribute("id", t.getId());
 //			rd = req.getRequestDispatcher("/index.jsp");
-			rd = req.getRequestDispatcher("/DisplayTravel");
+//			rd = req.getRequestDispatcher("/DisplayTravel");
+			resp.sendRedirect("/DisplayTravel?id="+t.getId());
 		}
 		else
 		{
 			req.setAttribute("errors", errors);
 			rd = req.getRequestDispatcher("/createTravel.jsp");
+			rd.forward(req, resp);
 		}
 		
-		rd.forward(req, resp);
+		
 	}	
 }
