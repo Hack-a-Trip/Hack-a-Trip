@@ -111,7 +111,8 @@
         </form>
         
         <div class="btn-toolbar">
-                <button form="form-details" class="btn btn-large" type="submit">view details</button>
+                <!--  <button form="form-details" class="btn btn-large" type="submit">view details</button>  -->
+                <a class="btn btn-large" href="/DisplayDetailsTravel?id=<%=t.getId()%>">Vote for a room</a>
                 <%
                 
                 

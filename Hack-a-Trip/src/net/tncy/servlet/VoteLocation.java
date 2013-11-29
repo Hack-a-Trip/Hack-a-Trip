@@ -56,7 +56,6 @@ public class VoteLocation extends HttpServlet
 				req.setAttribute("city", city);
 				req.setAttribute("budget", budget);
 				
-				rd = req.getRequestDispatcher("/DisplayDetailsTravel");
 			}
 			// On annule le vote
 			else
@@ -73,16 +72,14 @@ public class VoteLocation extends HttpServlet
 				req.setAttribute("city", city);
 				req.setAttribute("budget", budget);
 				
-				rd = req.getRequestDispatcher("/DisplayDetailsTravel");
 			}
+			resp.sendRedirect("/DisplayDetailsTravel?id="+idTravel);
 
 		}
 		else
 		{
-			req.setAttribute("error", "e1");
-			rd = req.getRequestDispatcher("/index.jsp");
+			resp.sendRedirect("/");
 		}
-        rd.forward(req, resp);
 	}
 
 }

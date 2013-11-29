@@ -23,6 +23,7 @@
 ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel");
 String textButtonVote = "";
 String typeSubmit = "";
+String buttonClass = "btn ";
 %>
 
 <div class="container">
@@ -50,19 +51,21 @@ String typeSubmit = "";
 								<%
 									if(e.isVoted())
 									{
-										textButtonVote = "Cancel vote !";
+										textButtonVote = "Cancel vote";
 										typeSubmit = "cancel";
 									}
 									else
 									{
-										textButtonVote = "Vote !";
+										textButtonVote = "Vote for this room !";
 										typeSubmit = "vote";
+										buttonClass += "btn-large btn-primary";
 									}
 								%>
-								<button class="btn btn-large btn-primary" onclick="javascript:view_location('<%=e.getNid()%>');">View details </button>
 								<input name="action" type="hidden" value="<%=typeSubmit%>"/>
-								<button class="btn btn-large btn-primary" name="submit" type="submit"><%=textButtonVote %></button>
+								<button class="<%=buttonClass %>" name="submit" type="submit"><%=textButtonVote %></button>
 							</form>
+							<br/><br/>
+							<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
 						</td>
 					</tr>
 				</table>

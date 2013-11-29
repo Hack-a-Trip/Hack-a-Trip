@@ -32,8 +32,6 @@ public class DisplayTravel extends HttpServlet
 				.getResultList();
 		User user = UserServiceFactory.getUserService().getCurrentUser();
 
-		RequestDispatcher rd = null;
-
 		if (user != null && members.contains(user.getEmail())) {
 			Travel t = (Travel) em
 					.createNamedQuery("findTravel")
@@ -48,11 +46,10 @@ public class DisplayTravel extends HttpServlet
 			req.setAttribute("owner", owner);
 			req.setAttribute("travel", t);
 			req.setAttribute("members", members);
-			rd = req.getRequestDispatcher("/displayTravel.jsp");
+			req.getRequestDispatcher("/displayTravel.jsp").forward(req, resp);
 		} else {
-			rd = req.getRequestDispatcher("/");
+			resp.sendRedirect("/");
 		}
-		rd.forward(req, resp);
 
 	}
 
