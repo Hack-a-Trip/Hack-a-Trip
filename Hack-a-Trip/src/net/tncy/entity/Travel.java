@@ -14,7 +14,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries(value={
 		@NamedQuery(name="findTravel", query="select t from Travel t where t.id = :travelId"),
-		@NamedQuery(name="findTravelIdByEmail", query="select b.travel from Bind b where b.member = :userEmail")
+		@NamedQuery(name="findTravelIdByEmail", query="select b.travel from Bind b where b.member = :userEmail"),
+		@NamedQuery(name="findMembers", query="select b.member from Bind b where b.travel= :travelId")
 })
 public class Travel
 {

@@ -1,6 +1,7 @@
 package net.tncy.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -22,8 +23,11 @@ public class DisplayTravel extends HttpServlet{
 
 		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
 
+		List<String> members = (List<String>)em.createNamedQuery("findMembers").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getResultList();
+		
 		RequestDispatcher rd = null;
 		req.setAttribute("travel", t);
+		req.setAttribute("members", members);
 		rd = req.getRequestDispatcher("/displayTravel.jsp");
 		rd.forward(req, resp);
 	}
@@ -34,9 +38,11 @@ public class DisplayTravel extends HttpServlet{
 		EntityManager em = EMF.getInstance().getEntityManager();
 
 		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", (Long)req.getAttribute("id")).getSingleResult();
+		List<String> members = (List<String>)em.createNamedQuery("findMembers").setParameter("travelId", (Long)req.getAttribute("id")).getResultList();
 
 		RequestDispatcher rd = null;
 		req.setAttribute("travel", t);
+		req.setAttribute("members", members);
 		rd = req.getRequestDispatcher("/displayTravel.jsp");
 		rd.forward(req, resp);
 	}
