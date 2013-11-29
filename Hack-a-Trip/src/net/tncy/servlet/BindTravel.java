@@ -30,7 +30,6 @@ public class BindTravel extends HttpServlet {
 		em.getTransaction().begin();
 		em.persist(b);
 		em.getTransaction().commit();
-		b.setMember(UserServiceFactory.getUserService().getCurrentUser().getEmail());
 		
 		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
 
