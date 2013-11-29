@@ -33,7 +33,7 @@ public class DisplayDetailsTravel extends HttpServlet
 		{
 			String city = req.getParameter("city");
 			int budget = Integer.valueOf(req.getParameter("budget"));
-			
+			System.out.println("budget :"+budget);
 			//FAUT METTRE LA PREMIERE LETTRE EN MAJUSCULE
 			char[] char_table = city.toCharArray();
 			char_table[0]=Character.toUpperCase(char_table[0]);

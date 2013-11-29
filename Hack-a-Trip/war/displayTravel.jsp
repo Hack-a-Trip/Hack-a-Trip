@@ -1,4 +1,3 @@
-<%@page import="com.google.appengine.api.users.UserServiceFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,15 +5,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="net.tncy.entity.Travel"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="com.google.appengine.api.users.User"%>
-<%@ page import="com.google.appengine.api.users.UserService"%>
-<%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
 
 <%
 	Travel t = (Travel) request.getAttribute("travel");
 	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-	String owner = (String)request.getAttribute("owner");
-	User user = UserServiceFactory.getUserService().getCurrentUser();
 %>
 
 
@@ -93,34 +87,16 @@
 			</c:forEach>
 		</c:if>
 	</ul>
-	
 	<form class="navbar-form pull-left" style="width:40%;margin: 0 auto 20px" action="/BindTravel" method="post">
 		<input name="email" type="email" class="span2" placeholder="email invitation">
 		<input name="id" type="hidden" value="<%=t.getId()%>">
 		<button class="btn" type="submit">add</button>
 	</form>
-	
-	<form id="form-details" class="form-bind" style="width:40%;margin: 0 auto 20px" action="/DisplayDetailsTravel" method="post">
-			<input name="city" type="hidden" value="<%=t.getCity() %>"/>
-			<input name="budget" type="hidden" value ="<%=t.getMaxBudget()%>"/>
+	<form class="form-bind" style="width:40%;margin: 0 auto 20px" action="/DisplayDetailsTravel" method="post">
+		<input name="city" type="hidden" value="<%=t.getCity() %>"/>
+		<input name="budget" type="hidden" value ="<%=t.getMaxBudget()%>"/>
+		<button class="btn btn-large btn-primary" type="submit">view details</button>
 	</form>
-	
-	<form id="form-delete" class="form-bind" style="width:40%;margin: 0 auto 20px" action="/DeleteTravel" method="post">
-			<input name="id" type="hidden" value="<%=t.getId()%>">
-	</form>
-	
-	<div class="btn-toolbar">
-		<button form="form-details" class="btn btn-large" type="submit">view details</button>
-		<%
-		
-		
-		if (user!=null && user.getEmail().equals(owner)) {
-		%>
-			<button form="form-delete" class="btn btn-large" type="submit">delete this travel</button>
-		<%
-		} 
-		%>
-	</div>
 </div>
 
 <div>
