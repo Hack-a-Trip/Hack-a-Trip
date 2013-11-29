@@ -58,37 +58,39 @@
 
 
 <div class="container">
-	<h1 style="text-align: center;"><%=t.getName()%></h1>
-	<div style="width: 100%; height: 40%" id="map-canvas" />
-</div>
-</br>
-</br>
-<div class="details">
+	<div class="hero-unit">
 	<table style="width: 50%">
 		<tr>
+			<th rowspan="2" style="font-size: 2.5em; width:50%"><h1 style="text-align: center;"><%=t.getName()%></h1></th>
 			<th style="font-size: 1.5em;">Start date</th>
 			<th style="font-size: 1.5em;">End date</th>
 			<th style="font-size: 1.5em;">Budget</th>
 		</tr>
-		<tr>
+		<tr>	
 			<td style="font-size: 1.5em; text-align: center"><%=df.format(t.getBeginDate())%></td>
 			<td style="font-size: 1.5em; text-align: center"><%=df.format(t.getEndDate())%></td>
 			<td style="font-size: 1.5em; text-align: center"><%=t.getMaxBudget()%></td>
 		</tr>
 	</table>
-	<br/>
-	<span style="font-size: 1.5em;">Members :</span>
-	</span>
+	</div>
+	<div style="width: 100%; height: 40%" id="map-canvas" />
+</div>
+</br>
+</br>
+<div class="details">
+
+	</ul class="nav nav-list">
+		<li class="nav-header">Members</li>
 		<c:if test="${not empty requestScope.members }">
 			<c:forEach var="member" items="${requestScope.members}">
-				${member} 
+				<li>${member}</li>
 			</c:forEach>
 		</c:if>
-	<span>
-	<form class="form-bind" style="width:40%;margin: 0 auto 20px" action="/BindTravel" method="post">
-		<input name="email" type="email" class="input-block-level" placeholder="Guest email">
+	</ul>
+	<form class="navbar-form pull-left" style="width:40%;margin: 0 auto 20px" action="/BindTravel" method="post">
+		<input name="email" type="email" class="span2" placeholder="Guest email">
 		<input name="id" type="hidden" value="<%=t.getId()%>">
-		<button class="btn btn-large btn-primary" type="submit">add</button>
+		<button class="btn" type="submit">add</button>
 	</form>
 	<form class="form-bind" style="width:40%;margin: 0 auto 20px" action="/DisplayDetailsTravel" method="post">
 		<input name="city" type="hidden" value="<%=t.getCity() %>"/>
