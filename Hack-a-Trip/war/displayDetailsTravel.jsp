@@ -63,7 +63,7 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 									{
 										textButtonVote = "Vote for this room !";
 										typeSubmit = "vote";
-										buttonClass += "btn-large btn-primary";
+										buttonClass = "btn btn-large btn-primary";
 									}
 								%>
 								<input name="action" type="hidden" value="<%=typeSubmit%>"/>
