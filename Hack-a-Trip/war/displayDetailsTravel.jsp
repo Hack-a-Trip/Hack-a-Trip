@@ -14,7 +14,7 @@
 <c:if test="${not empty requestScope.errors }">
 	<c:forEach var="error" items="${requestScope.errors}">
 		<div class="alert alert-error">
-			<a class="close" data-dismiss="alert">×</a> <strong>${error}</strong>
+			<a class="close" data-dismiss="alert">Ã—</a> <strong>${error}</strong>
 		</div>
 	</c:forEach>
 </c:if>
@@ -38,12 +38,16 @@ int totalMembers = 1, nbVote=1;
 				<table>
 					<tr>
 						<td style="width:70%"><%=e.getOrigin()%></td>
-						<td>Prix : <%=e.getPrice()%> euros
+						<td>Prix : <%=e.getPrice()%>&#8364; / night
 						</td>
 					</tr>
 					<tr>
 						<td style="width:70%"><img src="<%=e.getUrl()%>" /></td>
 						<td>
+							<span style="float:left;" class="badge"><%=nbVote%>/<%=totalMembers%></span>
+							<div class="progress progress-striped active">
+								<div class="bar" style="width: <%=(nbVote/totalMembers)*100%>%; float:right;"></div>
+							</div>
 							<form class="form-bind" style="margin: 0 auto 20px" action="/VoteLocation" method="post">
 								<input name="idTravel" type="hidden" value="<%=request.getAttribute("idTravel")%>"/>
 								<input name="city" type="hidden" value="<%=e.getOrigin()%>"/>
@@ -52,7 +56,7 @@ int totalMembers = 1, nbVote=1;
 								<%
 									if(e.isVoted())
 									{
-										textButtonVote = "Cancel vote";
+										textButtonVote = "Cancel my vote";
 										typeSubmit = "cancel";
 									}
 									else
@@ -63,14 +67,21 @@ int totalMembers = 1, nbVote=1;
 									}
 								%>
 								<input name="action" type="hidden" value="<%=typeSubmit%>"/>
-								<button class="<%=buttonClass %>" name="submit" type="submit"><%=textButtonVote %></button>
+								<button style="display:block; margin: auto;" class="<%=buttonClass %>" name="submit" type="submit"><%=textButtonVote %></button>
 							</form>
-							<span style="float:left;" class="badge"><%=nbVote%>/<%=totalMembers%></span>
-							<div class="progress progress-striped active">
-								<div class="bar" style="width: <%=(nbVote/totalMembers)*100%>%; float:right;"></div>
-							</div>
-							<br/><br/>
-							<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
+							<%
+								if(e.getVotes() > 0)
+								{
+							%>
+									<span style="float:left;" class="badge"><%=Integer.valueOf(e.getVotes())%>/<%=totalMembers%></span>
+									<div class="progress progress-striped active">
+										<div class="bar" style="width: <%=(Integer.valueOf(e.getVotes())/totalMembers)*100%>%; float:right;"></div>
+									</div>
+									<br/><br/>
+									<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
+							<%
+								}
+							%>
 						</td>
 					</tr>
 				</table>
