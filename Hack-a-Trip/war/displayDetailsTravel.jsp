@@ -21,28 +21,37 @@
 ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel");
 %>
 
-<form class="form-signin" style="width: 40%" action="/Resultat"
-	method="get">
-	<h2 class="form-signin-heading">Resultats</h2>
-	<div class="container">
+<div class="container">
+	<div class="hero-unit">
+		<h2 class="form-signin-heading">Resultats</h2>
 		<div class="CSSTableGenerator">
-			<table>
-				<%
-				for (Items e : liste)
-				{
-				%>
+			<%
+			for (Items e : liste)
+			{
+			%>
+				<table>
 					<tr>
-						<td><%=e.getOrigin()%></td>
+						<td style="width:70%"><%=e.getOrigin()%></td>
 						<td>Prix : <%=e.getPrice()%> euros
 						</td>
 					</tr>
-					<td><img src="<%=e.getUrl()%>" /></td>
-				<%
-				}
-				%>
-			</table>
+					<tr>
+						<td style="width:70%"><img src="<%=e.getUrl()%>" /></td>
+						<td>
+							<form class="form-bind" style="margin: 0 auto 20px" action="/DisplayDetailsTravel" method="post">
+								<input name="city" type="hidden" value="<%=e.getOrigin()%>">
+								<input name="location" type="hidden" value="<%=e.getNid()%>">
+								<button class="btn btn-large btn-primary" type="submit" onclick="javascript:view_location('<%=e.getNid()%>');">View details </button>
+								<button class="btn btn-large btn-primary" type="submit">Vote !</button>
+							</form>
+						</td>
+					</tr>
+				</table>
+			<%
+			}
+			%>
 		</div>
 	</div>
-</form>
+</div>
 
 <jsp:include page="footer.jsp"></jsp:include>

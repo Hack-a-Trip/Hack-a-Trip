@@ -31,6 +31,8 @@ body {
 <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="css/hackatrip.css" rel="stylesheet">
 
+<script src="js/hackatrip.js"></script>
+
 </head>
 
 <body>

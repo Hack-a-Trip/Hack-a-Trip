@@ -71,4 +71,14 @@ public class Items {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	public final String getNid()
+	{
+		return nid;
+	}
+
+	public final void setNid(String nid)
+	{
+		this.nid = nid;
+	}
 }
