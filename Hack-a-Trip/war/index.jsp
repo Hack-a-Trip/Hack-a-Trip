@@ -24,7 +24,7 @@
 		Work in progress...<br/><br/>
 		<h3>The team</h3>
 		Project leader 
-		<img src="http://www.sureiscute.com/images/50360e401d41c87726000130.jpg"/><br/>
+		<img src="http://www.cybercrimesunit.com/wp-content/plugins/rss-poster/cache/aa50c_dog-computer1.jpg"/><br/>
 		Web designer
 		<img src="http://b.imdoc.fr/1/animaux/animaux-2/photo/8704717870/20379892df7/animaux-2-chat-geek-img.jpg"/><br/>
 		Programmer
