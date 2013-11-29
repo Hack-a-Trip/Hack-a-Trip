@@ -16,11 +16,15 @@
 			<strong>Vous devez être connecté(e) pour accéder au site</strong>
 		</div>
 	</c:if>
-
+	
+	<div class="hero-unit">
 	<h1>Welcome in hack a trip</h1>
+	<br/>
 	<p>
-		This one will be a fucking project !<br> Soon...
+		This site aims to help group to organize trip !<br/>
+		To start, create a new travel or wait for an invitation<br/>
 	</p>
+	</div>
 	    
 </div>
 <!-- /container -->
