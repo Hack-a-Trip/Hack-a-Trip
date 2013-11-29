@@ -30,7 +30,7 @@
 		Programmer
 		<img src="http://cdn.cutestpaw.com/wp-content/uploads/2012/01/I-heard-hes-good-at-coding-l.jpg"/><br/>
 		System administrator
-		<img src="http://cdni.wired.co.uk/620x413/d_f/dog-in-an-office.jpg"/><br/>
+		<img src="http://elearn.mpls.k12.mn.us/students/pluginfile.php/24916/course/section/5664/animal.jpg"/><br/>
 	</p>
 	</div>
 	    
