@@ -34,7 +34,6 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 			<%
 			for (Items e : liste)
 			{
-				System.out.println((e.getVotes()*100)/totalMembers);
 			%>
 				<table>
 					<tr>
@@ -71,6 +70,7 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 								<button style="display:block; margin: auto;" class="<%=buttonClass %>" name="submit" type="submit"><%=textButtonVote %></button>
 							</form>
 							<br/><br/>
+							<button class="btn" onclick="javascript:book('<%=e.getLink()%>');">Book</button>
 							<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
 						</td>
 					</tr>
