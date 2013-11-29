@@ -46,8 +46,23 @@ public class API_outpost_travel {
 	}
 
 	public static String get(String url_web, String city) throws IOException, JSONException{
+		
+		//FAUT METTRE LA PREMIERE LETTRE EN MAJUSCULE
+		char[] char_table = city.toCharArray();
+		char_table[0]=Character.toUpperCase(char_table[0]);
+		city = new String(char_table);
+		//FIN
+		
 		if(city.contains(" ")){
+			
 			city = city.replaceAll(" ", "%20");
+			for(int i=0;i<city.length();i++){
+				if(city.charAt(i)=='0'){
+					char_table = city.toCharArray();
+					char_table[i+1] = Character.toUpperCase(char_table[i+1]);
+					city = new String(char_table);
+				}
+			}
 			System.out.println(city);
 		}
 		String source ="";
