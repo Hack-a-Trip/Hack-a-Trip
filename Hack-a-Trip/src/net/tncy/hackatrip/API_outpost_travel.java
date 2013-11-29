@@ -53,6 +53,12 @@ public class API_outpost_travel {
 		for(Items e : liste_item)
 			e.updateLocationsVoted(locationsVoted);
 	}
+	
+	public void updateTotalVoted(List<String> totalVoted)
+	{
+		for(Items e : liste_item)
+			e.updateTotalVoted(totalVoted);
+	}
 
 	public static String get(String url_web, String city) throws IOException, JSONException{
 

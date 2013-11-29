@@ -24,7 +24,7 @@ ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel"
 String textButtonVote = "";
 String typeSubmit = "";
 String buttonClass = "btn ";
-int totalMembers = 1, nbVote=1;
+int totalMembers =(Integer) request.getAttribute("totalMembers");
 %>
 
 <div class="container">
