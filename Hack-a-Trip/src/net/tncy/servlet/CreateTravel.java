@@ -54,7 +54,7 @@ public class CreateTravel extends HttpServlet
 		String countryForm = req.getParameter("country");
 		String beginDateForm = req.getParameter("beginDate");
 		String endDateForm = req.getParameter("endDate");
-		Integer budgetForm = Integer.valueOf(req.getParameter("budget"));
+		
 		
 		Date beginDate = null;
 		Date endDate = null;
@@ -68,6 +68,16 @@ public class CreateTravel extends HttpServlet
 			errors.add("Please enter a valid city");
 		if(countryForm.equals(""))
 			errors.add("Please enter a valid country");
+			
+		Integer budgetForm = 0;
+		try{
+			budgetForm =	Integer.valueOf(req.getParameter("budget"));
+		}catch(NumberFormatException nfe){
+			errors.add("Please enter the budget as an integer");
+		}
+			
+		if(budgetForm <= 0)
+			errors.add("Please enter a true budget");
 		try
 		{
 			beginDate = new SimpleDateFormat("dd/MM/yyyy").parse(beginDateForm);
