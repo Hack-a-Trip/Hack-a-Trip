@@ -25,10 +25,6 @@ public class DisplayTravel extends HttpServlet {
 
 		EntityManager em = EMF.getInstance().getEntityManager();
 
-		Travel t = (Travel) em.createNamedQuery("findTravel")
-				.setParameter("travelId", Long.valueOf(req.getParameter("id")))
-				.getSingleResult();
-
 		List<String> members = (List<String>) em
 				.createNamedQuery("findMembers")
 				.setParameter("travelId", Long.valueOf(req.getParameter("id")))
@@ -38,6 +34,13 @@ public class DisplayTravel extends HttpServlet {
 		RequestDispatcher rd = null;
 
 		if (user != null && members.contains(user.getEmail())) {
+			Travel t = (Travel) em.createNamedQuery("findTravel")
+					.setParameter("travelId", Long.valueOf(req.getParameter("id")))
+					.getSingleResult();
+			String owner = (String) em.createNamedQuery("findOwner")
+					.setParameter("travelId", Long.valueOf(req.getParameter("id")))
+					.getSingleResult();
+			req.setAttribute("owner", owner);
 			req.setAttribute("travel", t);
 			req.setAttribute("members", members);
 			rd = req.getRequestDispatcher("/displayTravel.jsp");
@@ -60,10 +63,14 @@ public class DisplayTravel extends HttpServlet {
 				.createNamedQuery("findMembers")
 				.setParameter("travelId", (Long) req.getAttribute("id"))
 				.getResultList();
+		String owner = (String) em.createNamedQuery("findOwner")
+				.setParameter("travelId", Long.valueOf(req.getParameter("id")))
+				.getSingleResult();
 
 		RequestDispatcher rd = null;
 		req.setAttribute("travel", t);
 		req.setAttribute("members", members);
+		req.setAttribute("owner", owner);
 		rd = req.getRequestDispatcher("/displayTravel.jsp");
 		rd.forward(req, resp);
 	}

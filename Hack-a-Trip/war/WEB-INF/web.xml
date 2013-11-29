@@ -33,6 +33,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>DeleteTravel</servlet-name>
+		<servlet-class>net.tncy.servlet.DeleteTravel</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteTravel</servlet-name>
+		<url-pattern>/DeleteTravel</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>DisplayDetailsTravel</servlet-name>
 		<servlet-class>net.tncy.servlet.DisplayDetailsTravel</servlet-class>
 	</servlet>
