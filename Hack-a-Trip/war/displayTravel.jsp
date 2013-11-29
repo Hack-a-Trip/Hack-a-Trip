@@ -59,7 +59,7 @@
 
 <div class="container">
 	<div class="hero-unit">
-	<table style="width: 50%">
+	<table style="width: 100%">
 		<tr>
 			<th rowspan="2" style="font-size: 2.5em; width:50%"><h1 style="text-align: center;"><%=t.getName()%></h1></th>
 			<th style="font-size: 1.5em;">Start date</th>
