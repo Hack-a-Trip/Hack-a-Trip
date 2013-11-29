@@ -34,7 +34,6 @@ public class BindTravel extends HttpServlet {
 		
 		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
 		InvitationMail.send(req.getParameter("email"), t);
-		S
 		resp.sendRedirect("/DisplayTravel?id="+t.getId());
 	}
 	
