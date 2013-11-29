@@ -34,6 +34,7 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 			<%
 			for (Items e : liste)
 			{
+				System.out.println((e.getVotes()*100)/totalMembers);
 			%>
 				<table>
 					<tr>
@@ -46,7 +47,7 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 						<td>
 							<span style="float:left;" class="badge"><%=e.getVotes()%>/<%=totalMembers%></span>
 							<div class="progress progress-striped active">
-								<div class="bar" style="width: <%=(e.getVotes()/totalMembers)*100 %>%; float:right;"></div>
+								<div class="bar" style="float:left; width: <%=(e.getVotes()*100)/totalMembers%>%;"></div>
 							</div>
 							<form class="form-bind" style="margin: 0 auto 20px" action="/VoteLocation" method="post">
 								<input name="idTravel" type="hidden" value="<%=request.getAttribute("idTravel")%>"/>
