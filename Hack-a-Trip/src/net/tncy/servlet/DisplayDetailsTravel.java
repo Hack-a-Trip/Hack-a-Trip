@@ -22,31 +22,22 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 
 @SuppressWarnings("serial")
-public class DisplayDetailsTravel extends HttpServlet {
+public class DisplayDetailsTravel extends HttpServlet
+{
 	API_outpost_travel test;
 
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException, ServletException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
+	{
 		EntityManager em = EMF.getInstance().getEntityManager();
 
-		List<String> members = (List<String>) em
-				.createNamedQuery("findMembers")
-				.setParameter("travelId", Long.valueOf(req.getParameter("id")))
-				.getResultList();
+		List<String> members = (List<String>) em.createNamedQuery("findMembers").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getResultList();
 		User user = UserServiceFactory.getUserService().getCurrentUser();
 
-		if (user != null && members.contains(user.getEmail())) {
-			Travel t = (Travel) em
-					.createNamedQuery("findTravel")
-					.setParameter("travelId",
-							Long.valueOf(req.getParameter("id")))
-					.getSingleResult();
+		if (user != null && members.contains(user.getEmail()))
+		{
+			Travel t = (Travel) em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
 
-			String owner = (String) em
-					.createNamedQuery("findOwner")
-					.setParameter("travelId",
-							Long.valueOf(req.getParameter("id")))
-					.getSingleResult();
+			String owner = (String) em.createNamedQuery("findOwner").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
 
 			String city = t.getCity();
 			String idTravel = String.valueOf(t.getId());
@@ -57,89 +48,105 @@ public class DisplayDetailsTravel extends HttpServlet {
 			city = new String(char_table);
 			// FIN
 
-			if (city != null && !city.equals("")) {
-				try {
-					Query q = em
-							.createNamedQuery("findVoteByIdTravelAndByMember");
+			if (city != null && !city.equals(""))
+			{
+				try
+				{
+					// Check room voted
+					Query q = em.createNamedQuery("findVoteByIdTravelAndByMember");
 					q.setParameter("idTravel", idTravel);
-					q.setParameter("member", UserServiceFactory
-							.getUserService().getCurrentUser().getEmail());
+					q.setParameter("member", UserServiceFactory.getUserService().getCurrentUser().getEmail());
 					List<Vote> listVotes = q.getResultList();
 					List<String> listLocationsVotedList = new ArrayList<String>();
 					for (Vote v : listVotes)
 						listLocationsVotedList.add(v.getIdLocation());
 
+					// Check number of votes
+					q = em.createNamedQuery("findVoteByIdTravel");
+					q.setParameter("idTravel", idTravel);
+					List<Vote> listTotalVotes = q.getResultList();
+					List<String> listTotalVoted = new ArrayList<String>();
+					for (Vote v : listTotalVotes)
+						listTotalVoted.add(v.getIdLocation());
+
 					test = new API_outpost_travel();
 					test.getInfoLieux(city, budget);
 					test.updateLocationsVoted(listLocationsVotedList);
+					test.updateTotalVoted(listTotalVoted);
 
 					req.setAttribute("detailsTravel", test.getListe_item());
 					req.setAttribute("idTravel", idTravel);
 					req.setAttribute("budget", req.getParameter("budget"));
 					req.setAttribute("listVotes", listVotes);
+					req.setAttribute("totalMembers", members.size());
 
-					req.getRequestDispatcher("/displayDetailsTravel.jsp")
-							.forward(req, resp);
-				} catch (JSONException e) {
+					req.getRequestDispatcher("/displayDetailsTravel.jsp").forward(req, resp);
+				}
+				catch (JSONException e)
+				{
 					e.printStackTrace();
 				}
-			} else {
-				resp.sendRedirect("/DisplayTravel?id="+t.getId());
 			}
-		} else {
+			else
+			{
+				resp.sendRedirect("/DisplayTravel?id=" + t.getId());
+			}
+		}
+		else
+		{
 			resp.sendRedirect("/");
 		}
 	}
 
-//	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-//			throws IOException, ServletException {
-//		RequestDispatcher rd = null;
-//
-//		if (User.isConnected(req.getSession())) {
-//			String city = req.getParameter("city");
-//			String idTravel = req.getParameter("idTravel");
-//			int budget = Integer.valueOf(req.getParameter("budget"));
-//			// FAUT METTRE LA PREMIERE LETTRE EN MAJUSCULE
-//			char[] char_table = city.toCharArray();
-//			char_table[0] = Character.toUpperCase(char_table[0]);
-//			city = new String(char_table);
-//			// FIN
-//
-//			if (city != null && !city.equals("")) {
-//				try {
-//					EntityManager em = EMF.getInstance().getEntityManager();
-//					Query q = em
-//							.createNamedQuery("findVoteByIdTravelAndByMember");
-//					q.setParameter("idTravel", idTravel);
-//					q.setParameter("member", UserServiceFactory
-//							.getUserService().getCurrentUser().getEmail());
-//					List<Vote> listVotes = q.getResultList();
-//					List<String> listLocationsVotedList = new ArrayList<String>();
-//					for (Vote v : listVotes)
-//						listLocationsVotedList.add(v.getIdLocation());
-//
-//					test = new API_outpost_travel();
-//					test.getInfoLieux(city, budget);
-//					test.updateLocationsVoted(listLocationsVotedList);
-//
-//					req.setAttribute("detailsTravel", test.getListe_item());
-//					req.setAttribute("idTravel", idTravel);
-//					req.setAttribute("budget", req.getParameter("budget"));
-//					req.setAttribute("listVotes", listVotes);
-//
-//					rd = req.getRequestDispatcher("/displayDetailsTravel.jsp");
-//				} catch (JSONException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			} else {
-//				rd = req.getRequestDispatcher("/index.jsp");
-//			}
-//		} else {
-//			req.setAttribute("error", "e1");
-//			rd = req.getRequestDispatcher("/index.jsp");
-//		}
-//
-//		rd.forward(req, resp);
-//	}
+	//	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+	//			throws IOException, ServletException {
+	//		RequestDispatcher rd = null;
+	//
+	//		if (User.isConnected(req.getSession())) {
+	//			String city = req.getParameter("city");
+	//			String idTravel = req.getParameter("idTravel");
+	//			int budget = Integer.valueOf(req.getParameter("budget"));
+	//			// FAUT METTRE LA PREMIERE LETTRE EN MAJUSCULE
+	//			char[] char_table = city.toCharArray();
+	//			char_table[0] = Character.toUpperCase(char_table[0]);
+	//			city = new String(char_table);
+	//			// FIN
+	//
+	//			if (city != null && !city.equals("")) {
+	//				try {
+	//					EntityManager em = EMF.getInstance().getEntityManager();
+	//					Query q = em
+	//							.createNamedQuery("findVoteByIdTravelAndByMember");
+	//					q.setParameter("idTravel", idTravel);
+	//					q.setParameter("member", UserServiceFactory
+	//							.getUserService().getCurrentUser().getEmail());
+	//					List<Vote> listVotes = q.getResultList();
+	//					List<String> listLocationsVotedList = new ArrayList<String>();
+	//					for (Vote v : listVotes)
+	//						listLocationsVotedList.add(v.getIdLocation());
+	//
+	//					test = new API_outpost_travel();
+	//					test.getInfoLieux(city, budget);
+	//					test.updateLocationsVoted(listLocationsVotedList);
+	//
+	//					req.setAttribute("detailsTravel", test.getListe_item());
+	//					req.setAttribute("idTravel", idTravel);
+	//					req.setAttribute("budget", req.getParameter("budget"));
+	//					req.setAttribute("listVotes", listVotes);
+	//
+	//					rd = req.getRequestDispatcher("/displayDetailsTravel.jsp");
+	//				} catch (JSONException e) {
+	//					// TODO Auto-generated catch block
+	//					e.printStackTrace();
+	//				}
+	//			} else {
+	//				rd = req.getRequestDispatcher("/index.jsp");
+	//			}
+	//		} else {
+	//			req.setAttribute("error", "e1");
+	//			rd = req.getRequestDispatcher("/index.jsp");
+	//		}
+	//
+	//		rd.forward(req, resp);
+	//	}
 }

@@ -12,7 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQueries(value = { @NamedQuery(name = "findVoteByIdTravelAndByMember", query = "select v from Vote v where v.idTravel = :idTravel and v.member =  :member"), @NamedQuery(name = "findVoteByIdTravelAndByIdLocationAndByMember", query = "select v from Vote v where v.idTravel = :idTravel and v.idLocation = :idLocation and v.member =  :member")})
+@NamedQueries(value = { @NamedQuery(name = "findVoteByIdTravel", query = "select v from Vote v where v.idTravel = :idTravel"), @NamedQuery(name = "findVoteByIdTravelAndByMember", query = "select v from Vote v where v.idTravel = :idTravel and v.member =  :member"), @NamedQuery(name = "findVoteByIdTravelAndByIdLocationAndByMember", query = "select v from Vote v where v.idTravel = :idTravel and v.idLocation = :idLocation and v.member =  :member")})
 public class Vote
 {
 	@Id

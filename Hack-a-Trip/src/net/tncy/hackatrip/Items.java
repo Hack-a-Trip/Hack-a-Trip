@@ -12,6 +12,7 @@ public class Items
 	String nid;
 	String link;
 	boolean voted = false;
+	int votes = 0;
 
 	public Items()
 	{
@@ -44,6 +45,17 @@ public class Items
 	{
 		if (locationsVoted.contains(nid))
 			voted = true;
+	}
+	
+	public void updateTotalVoted(List<String> totalVoted)
+	{
+		int nb = 0;
+		for(String s : totalVoted)
+		{
+			if(s.equals(nid))
+				nb++;
+		}
+		votes = nb;
 	}
 
 	public final boolean isVoted()
@@ -114,5 +126,15 @@ public class Items
 	public final void setNid(String nid)
 	{
 		this.nid = nid;
+	}
+
+	public final int getVotes()
+	{
+		return votes;
+	}
+
+	public final void setVotes(int votes)
+	{
+		this.votes = votes;
 	}
 }

@@ -24,7 +24,7 @@ ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel"
 String textButtonVote = "";
 String typeSubmit = "";
 String buttonClass = "btn ";
-int totalMembers = 1, nbVote=1;
+int totalMembers =(Integer) request.getAttribute("totalMembers");
 %>
 
 <div class="container">
@@ -65,12 +65,19 @@ int totalMembers = 1, nbVote=1;
 								<input name="action" type="hidden" value="<%=typeSubmit%>"/>
 								<button class="<%=buttonClass %>" name="submit" type="submit"><%=textButtonVote %></button>
 							</form>
-							<span style="float:left;" class="badge"><%=nbVote%>/<%=totalMembers%></span>
-							<div class="progress progress-striped active">
-								<div class="bar" style="width: <%=(nbVote/totalMembers)*100%>%; float:right;"></div>
-							</div>
-							<br/><br/>
-							<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
+							<%
+								if(e.getVotes() > 0)
+								{
+							%>
+									<span style="float:left;" class="badge"><%=Integer.valueOf(e.getVotes())%>/<%=totalMembers%></span>
+									<div class="progress progress-striped active">
+										<div class="bar" style="width: <%=(Integer.valueOf(e.getVotes())/totalMembers)*100%>%; float:right;"></div>
+									</div>
+									<br/><br/>
+									<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
+							<%
+								}
+							%>
 						</td>
 					</tr>
 				</table>
