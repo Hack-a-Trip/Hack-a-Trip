@@ -35,7 +35,7 @@ public class API_outpost_travel {
 		setP(gson.fromJson(get("http://api.outpost.travel/placeRentals", ville),Place.class));
 		for(int i =0;i<p.items.length;i++){
 			if(p.items[i].price <= budget){
-				Items temp = new Items(p.items[i].origin,p.items[i].price,p.items[i].photos[0].url,p.items[i].nid);
+				Items temp = new Items(p.items[i].origin,p.items[i].price,p.items[i].photos[0].url,p.items[i].nid,p.items[i].link);
 				liste_item.add(temp);
 			}
 		}

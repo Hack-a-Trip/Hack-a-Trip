@@ -7,16 +7,18 @@ public class Items {
 	Photos[] photos;
 	String url;
 	String nid;
+	String link;
 	
 	public Items(){
 		
 	}
 	
-	public Items(String origin, int price, String url,String nid){
+	public Items(String origin, int price, String url,String nid,String link){
 		this.origin=origin;
 		this.price=price;
 		this.url = url;
 		this.nid = nid;
+		this.link = link;
 	}
 	
 	public String toString(String s){
