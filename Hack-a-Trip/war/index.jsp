@@ -18,11 +18,12 @@
 	</c:if>
 	
 	<div class="hero-unit">
-	<h1>Welcome in hack a trip</h1>
+	<h1>Welcome in Hack-a-Trip</h1>
 	<br/>
 	<p>
-		This site aims to help group to organize trip !<br/>
-		To start, create a new travel or wait for an invitation<br/>
+		Work in progress...<br/><br/>
+		<img alt="" src="http://www.sureiscute.com/images/50360e401d41c87726000130.jpg"/>
+		<img src="http://b.imdoc.fr/1/animaux/animaux-2/photo/8704717870/20379892df7/animaux-2-chat-geek-img.jpg"/>
 	</p>
 	</div>
 	    
