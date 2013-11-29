@@ -46,7 +46,10 @@ public class API_outpost_travel {
 	}
 
 	public static String get(String url_web, String city) throws IOException, JSONException{
-
+		if(city.contains(" ")){
+			city = city.replaceAll(" ", "%20");
+			System.out.println(city);
+		}
 		String source ="";
 		URL url = new URL(url_web+"?city="+city);
 		BufferedReader in = new BufferedReader(
