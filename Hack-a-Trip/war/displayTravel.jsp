@@ -88,7 +88,7 @@
 		</c:if>
 	</ul>
 	<form class="navbar-form pull-left" style="width:40%;margin: 0 auto 20px" action="/BindTravel" method="post">
-		<input name="email" type="email" class="span2" placeholder="Guest email">
+		<input name="email" type="email" class="span2" placeholder="email invitation">
 		<input name="id" type="hidden" value="<%=t.getId()%>">
 		<button class="btn" type="submit">add</button>
 	</form>

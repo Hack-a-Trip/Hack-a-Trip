@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.tncy.database.EMF;
 import net.tncy.entity.Bind;
 import net.tncy.entity.Travel;
+import net.tncy.hackatrip.InvitationMail;
 
 import com.google.appengine.api.users.UserServiceFactory;
 
@@ -35,7 +36,7 @@ public class BindTravel extends HttpServlet {
 
 		List<String> members = (List<String>)em.createNamedQuery("findMembers").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getResultList();
 		
-		
+		InvitationMail.send(req.getParameter("email"), t);
 		req.setAttribute("travel", t);
 		req.setAttribute("members", members);
 		RequestDispatcher rd = req.getRequestDispatcher("/displayTravel.jsp");
