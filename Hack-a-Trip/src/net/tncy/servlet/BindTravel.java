@@ -41,6 +41,8 @@ public class BindTravel extends HttpServlet {
 		RequestDispatcher rd = req.getRequestDispatcher("/displayTravel.jsp");
 		rd.forward(req, resp);
 		
+		
+		
 	}
 	
 }
