@@ -70,8 +70,8 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 								<button style="display:block; margin: auto;" class="<%=buttonClass %>" name="submit" type="submit"><%=textButtonVote %></button>
 							</form>
 							<br/><br/>
-							<button class="btn" onclick="javascript:book('<%=e.getLink()%>');">Book</button>
 							<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
+							<button class="btn" onclick="javascript:book('<%=e.getLink()%>');">Book</button>
 						</td>
 					</tr>
 				</table>
