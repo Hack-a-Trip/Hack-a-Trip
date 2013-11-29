@@ -58,6 +58,16 @@ public class Items
 		votes = nb;
 	}
 
+	public final String getLink()
+	{
+		return link;
+	}
+
+	public final void setLink(String link)
+	{
+		this.link = link;
+	}
+
 	public final boolean isVoted()
 	{
 		return voted;
