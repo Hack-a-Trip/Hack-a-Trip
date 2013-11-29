@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import net.tncy.servlet.DisplayDetailsTravel;
 
@@ -45,6 +46,12 @@ public class API_outpost_travel {
 	public void getInfoExperiences(String ville) throws JsonSyntaxException, IOException, JSONException{
 		Gson gson = new GsonBuilder().create();
 		setA(gson.fromJson(get("http://api.outpost.travel/experiences", ville),Activite.class));
+	}
+	
+	public void updateLocationsVoted(List<String> locationsVoted)
+	{
+		for(Items e : liste_item)
+			e.updateLocationsVoted(locationsVoted);
 	}
 
 	public static String get(String url_web, String city) throws IOException, JSONException{

@@ -1,6 +1,9 @@
 package net.tncy.hackatrip;
 
-public class Items {
+import java.util.List;
+
+public class Items
+{
 	int price;
 	String origin;
 	String description;
@@ -8,69 +11,98 @@ public class Items {
 	String url;
 	String nid;
 	String link;
-	
-	public Items(){
-		
+	boolean voted = false;
+
+	public Items()
+	{
+
 	}
-	
-	public Items(String origin, int price, String url,String nid,String link){
-		this.origin=origin;
-		this.price=price;
+
+	public Items(String origin, int price, String url, String nid, String link)
+	{
+		this.origin = origin;
+		this.price = price;
 		this.url = url;
 		this.nid = nid;
 		this.link = link;
 	}
-	
-	public String toString(String s){
-		if(s.compareTo("place")==0){
-		String p = Integer.toString(price);
-		return "Ville : "+origin+"\n"+
-				"Prix : "+p+"\n"+
-				"Photos : "+photos[0].toString(s);	
-		}else{
-			return "Ville : "+origin+"\n"+
-					"Description : "+description+"\n"+
-					"Photos : "+photos[0].toString(s);
+
+	public String toString(String s)
+	{
+		if (s.compareTo("place") == 0)
+		{
+			String p = Integer.toString(price);
+			return "Ville : " + origin + "\n" + "Prix : " + p + "\n" + "Photos : " + photos[0].toString(s);
+		}
+		else
+		{
+			return "Ville : " + origin + "\n" + "Description : " + description + "\n" + "Photos : " + photos[0].toString(s);
 		}
 	}
 
-	public int getPrice() {
+	public void updateLocationsVoted(List<String> locationsVoted)
+	{
+		if (locationsVoted.contains(nid))
+			voted = true;
+	}
+
+	public final boolean isVoted()
+	{
+		return voted;
+	}
+
+	public final void setVoted(boolean voted)
+	{
+		this.voted = voted;
+	}
+
+	public int getPrice()
+	{
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(int price)
+	{
 		this.price = price;
 	}
 
-	public String getOrigin() {
+	public String getOrigin()
+	{
 		return origin;
 	}
 
-	public void setOrigin(String origin) {
+	public void setOrigin(String origin)
+	{
 		this.origin = origin;
 	}
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		this.description = description;
 	}
 
-	public Photos[] getPhotos() {
+	public Photos[] getPhotos()
+	{
 		return photos;
 	}
 
-	public void setPhotos(Photos[] photos) {
+	public void setPhotos(Photos[] photos)
+	{
 		this.photos = photos;
 	}
 
-	public String getUrl() {
+	public String getUrl()
+	{
 		return url;
 	}
 
-	public void setUrl(String url) {
+	public void setUrl(String url)
+	{
 		this.url = url;
 	}
 

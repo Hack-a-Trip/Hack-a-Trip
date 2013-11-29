@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="net.tncy.entity.Vote"%>
 <%@page import="net.tncy.hackatrip.Items"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -19,6 +21,8 @@
 
 <%
 ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel");
+String textButtonVote = "";
+String typeSubmit = "";
 %>
 
 <div class="container">
@@ -38,11 +42,26 @@ ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel"
 					<tr>
 						<td style="width:70%"><img src="<%=e.getUrl()%>" /></td>
 						<td>
-							<form class="form-bind" style="margin: 0 auto 20px" action="/DisplayDetailsTravel" method="post">
-								<input name="city" type="hidden" value="<%=e.getOrigin()%>">
-								<input name="location" type="hidden" value="<%=e.getNid()%>">
-								<button class="btn btn-large btn-primary" type="submit" onclick="javascript:view_location('<%=e.getNid()%>');">View details </button>
-								<button class="btn btn-large btn-primary" type="submit">Vote !</button>
+							<form class="form-bind" style="margin: 0 auto 20px" action="/VoteLocation" method="post">
+								<input name="idTravel" type="hidden" value="<%=request.getAttribute("idTravel")%>"/>
+								<input name="city" type="hidden" value="<%=e.getOrigin()%>"/>
+								<input name="idLocation" type="hidden" value="<%=e.getNid()%>"/>
+								<input name="budget" type="hidden" value="<%=request.getAttribute("budget") %>"/>
+								<%
+									if(e.isVoted())
+									{
+										textButtonVote = "Cancel vote !";
+										typeSubmit = "cancel";
+									}
+									else
+									{
+										textButtonVote = "Vote !";
+										typeSubmit = "vote";
+									}
+								%>
+								<button class="btn btn-large btn-primary" onclick="javascript:view_location('<%=e.getNid()%>');">View details </button>
+								<input name="action" type="hidden" value="<%=typeSubmit%>"/>
+								<button class="btn btn-large btn-primary" name="submit" type="submit"><%=textButtonVote %></button>
 							</form>
 						</td>
 					</tr>
