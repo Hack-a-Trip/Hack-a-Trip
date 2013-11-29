@@ -10,6 +10,8 @@ import javax.servlet.http.*;
 
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 
+import net.tncy.database.EMF;
+import net.tncy.entity.Travel;
 import net.tncy.hackatrip.API_outpost_travel;
 import net.tncy.tool.User;
 
@@ -29,7 +31,14 @@ public class DisplayDetailsTravel extends HttpServlet
 		
 		if(User.isConnected(req.getSession()))
 		{
-			String city = req.getParameter("city"); //il n'y a pas de formulaire sur la page, pkoi un getParameter ? il faut plutôt récuperer la city du travel donc aller voir dans la bdd
+			String city = req.getParameter("city");
+			
+			//FAUT METTRE LA PREMIERE LETTRE EN MAJUSCULE
+			char[] char_table = city.toCharArray();
+			char_table[0]=Character.toUpperCase(char_table[0]);
+			city = new String(char_table);
+			//FIN
+			
 			if (city != null && !city.equals(""))
 			{
 				try
