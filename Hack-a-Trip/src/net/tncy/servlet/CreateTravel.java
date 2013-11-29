@@ -74,6 +74,7 @@ public class CreateTravel extends HttpServlet
 			budgetForm =	Integer.valueOf(req.getParameter("budget"));
 		}catch(NumberFormatException nfe){
 			errors.add("Please enter the budget as an integer");
+			//saloperie de gestionnaiere de version de mes deux
 		}
 			
 		if(budgetForm <= 0)
