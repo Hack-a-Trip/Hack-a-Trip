@@ -34,7 +34,7 @@ public class API_outpost_travel {
 		Gson gson = new GsonBuilder().create();
 		setP(gson.fromJson(get("http://api.outpost.travel/placeRentals", ville),Place.class));
 		for(int i =0;i<p.items.length;i++){
-			Items temp = new Items(p.items[i].origin,p.items[i].price,p.items[i].photos[0].url);
+			Items temp = new Items(p.items[i].origin,p.items[i].price,p.items[i].photos[0].url,p.items[i].nid);
 			liste_item.add(temp);
 		}
 		
@@ -63,7 +63,6 @@ public class API_outpost_travel {
 					city = new String(char_table);
 				}
 			}
-			System.out.println(city);
 		}
 		String source ="";
 		URL url = new URL(url_web+"?city="+city);

@@ -6,15 +6,17 @@ public class Items {
 	String description;
 	Photos[] photos;
 	String url;
+	String nid;
 	
 	public Items(){
 		
 	}
 	
-	public Items(String origin, int price, String url){
+	public Items(String origin, int price, String url,String nid){
 		this.origin=origin;
 		this.price=price;
 		this.url = url;
+		this.nid = nid;
 	}
 	
 	public String toString(String s){
