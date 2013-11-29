@@ -13,32 +13,53 @@ import javax.servlet.http.HttpServletResponse;
 import net.tncy.database.EMF;
 import net.tncy.entity.Travel;
 
-public class DisplayTravel extends HttpServlet{
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserServiceFactory;
+
+public class DisplayTravel extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
-		
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+
 		EntityManager em = EMF.getInstance().getEntityManager();
 
-		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
+		Travel t = (Travel) em.createNamedQuery("findTravel")
+				.setParameter("travelId", Long.valueOf(req.getParameter("id")))
+				.getSingleResult();
 
-		List<String> members = (List<String>)em.createNamedQuery("findMembers").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getResultList();
-		
+		List<String> members = (List<String>) em
+				.createNamedQuery("findMembers")
+				.setParameter("travelId", Long.valueOf(req.getParameter("id")))
+				.getResultList();
+		User user = UserServiceFactory.getUserService().getCurrentUser();
+
 		RequestDispatcher rd = null;
-		req.setAttribute("travel", t);
-		req.setAttribute("members", members);
-		rd = req.getRequestDispatcher("/displayTravel.jsp");
+
+		if (user != null && members.contains(user.getEmail())) {
+			req.setAttribute("travel", t);
+			req.setAttribute("members", members);
+			rd = req.getRequestDispatcher("/displayTravel.jsp");
+		} else {
+			rd = req.getRequestDispatcher("/");
+		}
 		rd.forward(req, resp);
+
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		EntityManager em = EMF.getInstance().getEntityManager();
 
-		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", (Long)req.getAttribute("id")).getSingleResult();
-		List<String> members = (List<String>)em.createNamedQuery("findMembers").setParameter("travelId", (Long)req.getAttribute("id")).getResultList();
+		Travel t = (Travel) em.createNamedQuery("findTravel")
+				.setParameter("travelId", (Long) req.getAttribute("id"))
+				.getSingleResult();
+		List<String> members = (List<String>) em
+				.createNamedQuery("findMembers")
+				.setParameter("travelId", (Long) req.getAttribute("id"))
+				.getResultList();
 
 		RequestDispatcher rd = null;
 		req.setAttribute("travel", t);
