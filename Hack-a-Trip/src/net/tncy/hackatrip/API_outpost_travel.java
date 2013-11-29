@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import net.tncy.servlet.Resultat;
+import net.tncy.servlet.DisplayDetailsTravel;
 
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.gson.GsonBuilder;

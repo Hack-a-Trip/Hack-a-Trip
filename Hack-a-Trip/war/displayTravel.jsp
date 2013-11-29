@@ -53,7 +53,6 @@
 </script>
 
 <jsp:include page="header.jsp">
-	<jsp:param name="noprotect" value="1" />
 	<jsp:param name="title" value="Plan a travel" />
 </jsp:include>
 
@@ -90,6 +89,10 @@
 		<input name="email" type="email" class="input-block-level" placeholder="Guest email">
 		<input name="id" type="hidden" value="<%=t.getId()%>">
 		<button class="btn btn-large btn-primary" type="submit">add</button>
+	</form>
+	<form class="form-bind" style="width:40%;margin: 0 auto 20px" action="/DisplayDetailsTravel" method="post">
+		<input name="city" type="hidden" value="<%=t.getCity() %>"/>
+		<button class="btn btn-large btn-primary" type="submit">view details</button>
 	</form>
 </div>
 

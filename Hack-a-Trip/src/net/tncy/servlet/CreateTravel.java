@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.tncy.database.EMF;
 import net.tncy.entity.Bind;
 import net.tncy.entity.Travel;
+import net.tncy.tool.User;
 
 import com.google.appengine.api.users.UserServiceFactory;
 
@@ -25,17 +26,23 @@ public class CreateTravel extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
 	{
 		RequestDispatcher rd = null;
-		
-		req.getSession().setAttribute("connected", "true");
-        if (net.tncy.tool.User.isConnected(req.getSession()))
-        {
-        	rd = req.getRequestDispatcher("/createTravel.jsp");
-        }
-        else
-        {
-        	rd = req.getRequestDispatcher("/index.html");
-        }
-        
+		if(User.isConnected(req.getSession()))
+		{
+	        if (net.tncy.tool.User.isConnected(req.getSession()))
+	        {
+	        	rd = req.getRequestDispatcher("/createTravel.jsp");
+	        }
+	        else
+	        {
+	        	req.setAttribute("error", "e1");
+	        	rd = req.getRequestDispatcher("/index.jsp");
+	        }
+		}
+		else
+		{
+			req.setAttribute("error", "e1");
+			rd = req.getRequestDispatcher("/index.jsp");
+		}
         rd.forward(req, resp);
 	}
 	

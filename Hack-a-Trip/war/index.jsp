@@ -10,6 +10,13 @@
 
 <div class="container">
 
+	<c:if test="${not empty requestScope.error && requestScope.error == 'e1' }">
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert">×</a>
+			<strong>Vous devez être connecté(e) pour accéder au site</strong>
+		</div>
+	</c:if>
+
 	<h1>Welcome in hack a trip</h1>
 	<p>
 		This one will be a fucking project !<br> Soon...

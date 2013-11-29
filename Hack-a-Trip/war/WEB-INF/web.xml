@@ -24,21 +24,21 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>Resultat</servlet-name>
-		<servlet-class>net.tncy.servlet.Resultat</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Resultat</servlet-name>
-		<url-pattern>/Resultat</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
 		<servlet-name>DisplayTravel</servlet-name>
 		<servlet-class>net.tncy.servlet.DisplayTravel</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DisplayTravel</servlet-name>
 		<url-pattern>/DisplayTravel</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DisplayDetailsTravel</servlet-name>
+		<servlet-class>net.tncy.servlet.DisplayDetailsTravel</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DisplayDetailsTravel</servlet-name>
+		<url-pattern>/DisplayDetailsTravel</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
