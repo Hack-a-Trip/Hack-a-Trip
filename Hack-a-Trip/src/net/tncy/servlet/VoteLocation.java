@@ -78,7 +78,9 @@ public class VoteLocation extends HttpServlet
 		}
 		else
 		{
-			resp.sendRedirect("/");
+			req.setAttribute("error","e1");
+			rd = req.getRequestDispatcher("/");
+			rd.forward(req, resp);
 		}
 	}
 

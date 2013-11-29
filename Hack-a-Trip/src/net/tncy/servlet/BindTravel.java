@@ -14,6 +14,7 @@ import net.tncy.database.EMF;
 import net.tncy.entity.Bind;
 import net.tncy.entity.Travel;
 import net.tncy.hackatrip.InvitationMail;
+import net.tncy.tool.User;
 
 public class BindTravel extends HttpServlet {
 
@@ -22,19 +23,29 @@ public class BindTravel extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		RequestDispatcher rd = null;
 		
-		Bind b = new Bind();
-		b.setTravel(Long.valueOf(req.getParameter("id")));
-		b.setMember(req.getParameter("email"));
-		b.setOwner(false);
-		EntityManager em = EMF.getInstance().getEntityManager();
-		em.getTransaction().begin();
-		em.persist(b);
-		em.getTransaction().commit();
-		
-		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
-		InvitationMail.send(req.getParameter("email"), t);
-		resp.sendRedirect("/DisplayTravel?id="+t.getId());
+		if(User.isConnected(req.getSession()))
+		{
+			Bind b = new Bind();
+			b.setTravel(Long.valueOf(req.getParameter("id")));
+			b.setMember(req.getParameter("email"));
+			b.setOwner(false);
+			EntityManager em = EMF.getInstance().getEntityManager();
+			em.getTransaction().begin();
+			em.persist(b);
+			em.getTransaction().commit();
+			
+			Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
+			InvitationMail.send(req.getParameter("email"), t);
+			resp.sendRedirect("/DisplayTravel?id="+t.getId());
+		}
+		else
+		{
+			rd = req.getRequestDispatcher("/");
+			req.setAttribute("error","e1");
+			rd.forward(req, resp);
+		}
 	}
 	
 }
