@@ -33,17 +33,9 @@ public class BindTravel extends HttpServlet {
 		em.getTransaction().commit();
 		
 		Travel t = (Travel)em.createNamedQuery("findTravel").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getSingleResult();
-
-		List<String> members = (List<String>)em.createNamedQuery("findMembers").setParameter("travelId", Long.valueOf(req.getParameter("id"))).getResultList();
-		
 		InvitationMail.send(req.getParameter("email"), t);
-		req.setAttribute("travel", t);
-		req.setAttribute("members", members);
-		RequestDispatcher rd = req.getRequestDispatcher("/displayTravel.jsp");
-		rd.forward(req, resp);
-		
-		
-		
+		S
+		resp.sendRedirect("/DisplayTravel?id="+t.getId());
 	}
 	
 }
