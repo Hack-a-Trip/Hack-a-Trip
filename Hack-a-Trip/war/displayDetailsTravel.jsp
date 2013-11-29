@@ -23,7 +23,7 @@
 ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel");
 String textButtonVote = "";
 String typeSubmit = "";
-String buttonClass = "btn ";
+String buttonClass = "";
 int totalMembers =(Integer) request.getAttribute("totalMembers");
 %>
 
@@ -34,7 +34,6 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 			<%
 			for (Items e : liste)
 			{
-				System.out.println((e.getVotes()*100)/totalMembers);
 			%>
 				<table>
 					<tr>
@@ -59,20 +58,21 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 									{
 										textButtonVote = "Cancel my vote";
 										typeSubmit = "cancel";
+										buttonClass = "btn";
 									}
 									else
 									{
 										textButtonVote = "Vote for this room !";
 										typeSubmit = "vote";
-										buttonClass += "btn-large btn-primary";
+										buttonClass = "btn btn-large btn-primary";
 									}
 								%>
 								<input name="action" type="hidden" value="<%=typeSubmit%>"/>
 								<button style="display:block; margin: auto;" class="<%=buttonClass %>" name="submit" type="submit"><%=textButtonVote %></button>
 							</form>
 							<br/><br/>
-							<button class="btn" onclick="javascript:book('<%=e.getLink()%>');">Book</button>
 							<button class="btn" onclick="javascript:view_location('<%=e.getNid()%>');">View details</button>
+							<button class="btn" onclick="javascript:book('<%=e.getLink()%>');">Book</button>
 						</td>
 					</tr>
 				</table>
