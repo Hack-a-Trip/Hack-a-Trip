@@ -29,7 +29,7 @@ public class DisplayDetailsTravel extends HttpServlet
 		
 		if(User.isConnected(req.getSession()))
 		{
-			String city = req.getParameter("city");
+			String city = req.getParameter("city"); //il n'y a pas de formulaire sur la page, pkoi un getParameter ? il faut plutôt récuperer la city du travel donc aller voir dans la bdd
 			if (city != null && !city.equals(""))
 			{
 				try
