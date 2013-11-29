@@ -23,7 +23,7 @@
 ArrayList<Items> liste = (ArrayList<Items>) request.getAttribute("detailsTravel");
 String textButtonVote = "";
 String typeSubmit = "";
-String buttonClass = "btn ";
+String buttonClass = "";
 int totalMembers =(Integer) request.getAttribute("totalMembers");
 %>
 
@@ -58,6 +58,7 @@ int totalMembers =(Integer) request.getAttribute("totalMembers");
 									{
 										textButtonVote = "Cancel my vote";
 										typeSubmit = "cancel";
+										buttonClass = "btn";
 									}
 									else
 									{
