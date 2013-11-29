@@ -24,6 +24,7 @@
 		This site aims to help group to organize trip !<br/>
 		To start, create a new travel or wait for an invitation<br/>
 	</p>
+	<img src="http://b.imdoc.fr/1/animaux/animaux-2/photo/8704717870/20379892df7/animaux-2-chat-geek-img.jpg"/>
 	</div>
 	    
 </div>
