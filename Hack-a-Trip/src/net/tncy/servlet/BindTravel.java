@@ -15,9 +15,9 @@ import net.tncy.entity.Bind;
 import net.tncy.entity.Travel;
 import net.tncy.hackatrip.InvitationMail;
 
-import com.google.appengine.api.users.UserServiceFactory;
-
 public class BindTravel extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
