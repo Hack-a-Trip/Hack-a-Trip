@@ -31,7 +31,7 @@ public class InvitationMail {
 							"A bientôt, sur Hack a trip!";
 			try{
 				Message msg = new MimeMessage(session);
-				msg.setFrom(new InternetAddress("noreply@hackatrip.appspot.com", "Invitation Hack a Trip"));
+				msg.setFrom(new InternetAddress(user.getEmail(), "Invitation Hack a Trip"));
 				msg.addRecipient(Message.RecipientType.TO,
 						new InternetAddress(mail, "Invité"));
 				msg.setSubject(user.getNickname()+" vous invite à voyager, depuis le site Hackatrip.appspot.com");
