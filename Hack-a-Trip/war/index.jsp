@@ -22,10 +22,16 @@
 	<br/>
 	<p>
 		Work in progress...<br/><br/>
-		<img alt="" src="http://www.sureiscute.com/images/50360e401d41c87726000130.jpg"/>
-		<img src="http://b.imdoc.fr/1/animaux/animaux-2/photo/8704717870/20379892df7/animaux-2-chat-geek-img.jpg"/>
+		<h3>The team</h3>
+		Project leader 
+		<img src="http://www.sureiscute.com/images/50360e401d41c87726000130.jpg"/><br/>
+		Web designer
+		<img src="http://b.imdoc.fr/1/animaux/animaux-2/photo/8704717870/20379892df7/animaux-2-chat-geek-img.jpg"/><br/>
+		Programmer
+		<img src="http://cdn.cutestpaw.com/wp-content/uploads/2012/01/I-heard-hes-good-at-coding-l.jpg"/><br/>
+		System administrator
+		<img src="http://cdni.wired.co.uk/620x413/d_f/dog-in-an-office.jpg"/><br/>
 	</p>
-	<img src="http://b.imdoc.fr/1/animaux/animaux-2/photo/8704717870/20379892df7/animaux-2-chat-geek-img.jpg"/>
 	</div>
 	    
 </div>
